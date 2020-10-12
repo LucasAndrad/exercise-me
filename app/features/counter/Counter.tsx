@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Counter.css';
-import routes from '../../constants/routes.json';
+import { routes } from '../../constants/routes';
 import {
   increment,
   decrement,
@@ -14,6 +14,9 @@ import {
 export default function Counter() {
   const dispatch = useDispatch();
   const value = useSelector(selectCount);
+  useEffect(() => {
+    console.log(`current path on Courter: ${window.location.href}`);
+  }, []);
   return (
     <div>
       <div className={styles.backButton} data-tid="backButton">

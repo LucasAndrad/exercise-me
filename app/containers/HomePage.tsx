@@ -1,6 +1,9 @@
 import React from 'react';
-import Home from '../components/Home';
 
 export default function HomePage() {
-  return <Home />;
+  return (
+    <div>
+      <button type="button">Start my day</button>
+    </div>
+  );
 }

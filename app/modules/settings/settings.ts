@@ -15,5 +15,6 @@ export const shouldStartNewDay = () => {};
 
 export const setStartDay = () => {
   const timestampString = Date.now().toString();
+  console.log(`start day === ${timestampString}`);
   localStorage.setItem(storageKeys.startDay, timestampString);
 };

@@ -4,7 +4,7 @@ import { AppThunk, RootState } from '../../store';
 
 const counterSlice = createSlice({
   name: 'counter',
-  initialState: { value: 0 },
+  initialState: { value: 10 },
   reducers: {
     increment: (state) => {
       state.value += 1;

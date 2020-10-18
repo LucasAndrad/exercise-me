@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'erb/typescript',
+  extends: ['erb/typescript', 'plugin:import/typescript'],
   rules: {
     // A temporary hack related to IDE not resolving correct package.json
     'import/no-extraneous-dependencies': 'off',
@@ -16,6 +16,7 @@ module.exports = {
     'import/resolver': {
       // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below
       node: {},
+      alias: [['app', './app']],
       webpack: {
         config: require.resolve('./configs/webpack.config.eslint.js'),
       },

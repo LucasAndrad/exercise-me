@@ -26,7 +26,6 @@
       "app/*": ["app/*"]
     }
   },
-  "include": ["src"],
   "exclude": [
     "test",
     "release",

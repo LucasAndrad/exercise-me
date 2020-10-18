@@ -3,4 +3,5 @@ export const routes = {
   COUNTER: '/counter',
   EXERCISE: '/exercise',
   START_DAY: '/',
+  PANEL: '/panel',
 };

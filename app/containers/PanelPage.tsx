@@ -24,9 +24,7 @@ export const PanelPage = () => {
     exerciseWindow.loadURL(`file://${__dirname}/app.html#/exercise`);
   };
 
-  const handleLastBodyExerciseChange = (event) => {
-    console.log('event inside of addEventListener');
-    console.log(event);
+  const handleLastBodyExerciseChange = (event: any) => {
     if (
       event.key === storageKeys.lastBodyExercise &&
       event.oldValue !== event.newValue
@@ -46,7 +44,7 @@ export const PanelPage = () => {
   }, []);
 
   useEffect(() => {
-    let exerciseTimeout: any = null;
+    let exerciseTimeout: NodeJS.Timeout;
 
     if (nextBodyExercise > 0) {
       exerciseTimeout = setTimeout(() => {

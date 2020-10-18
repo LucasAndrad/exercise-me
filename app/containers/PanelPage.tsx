@@ -49,7 +49,8 @@ export const PanelPage = () => {
     if (nextBodyExercise > 0) {
       exerciseTimeout = setTimeout(() => {
         openExerciseWindow();
-      }, 10000);
+        // this should be the interval
+      }, 3000);
     }
 
     return () => {

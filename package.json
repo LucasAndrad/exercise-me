@@ -318,7 +318,8 @@
         }
       }
     ],
-    "singleQuote": true
+    "singleQuote": true,
+    "printWidth": 90
   },
   "stylelint": {
     "extends": [

@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { routes } from './constants/routes';
 import App from './containers/App';
 import HomePage from './containers/HomePage';
-import ExercisePage from './containers/ExercisePage';
-import { StartDayPage, PanelPage } from './containers';
+import { StartDayPage, PanelPage, ExercisePage } from './containers';
 
 // Lazily load routes and code split with webpack
 const LazyCounterPage = React.lazy(() =>

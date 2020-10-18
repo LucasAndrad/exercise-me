@@ -9,6 +9,7 @@ const { remote } = require('electron');
 
 export const PanelPage = () => {
   const [nextBodyExercise, setNextBodyExercise] = useState(0);
+
   const openExerciseWindow = () => {
     const { BrowserWindow } = remote;
     const exerciseWindow = new BrowserWindow({
@@ -27,7 +28,7 @@ export const PanelPage = () => {
     if (nextBodyExercise > 0) {
       exerciseTimeout = setTimeout(() => {
         openExerciseWindow();
-      }, 10000);
+      }, 5000);
     }
 
     return () => {

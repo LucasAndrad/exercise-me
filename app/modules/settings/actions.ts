@@ -29,3 +29,8 @@ export const setStartDay = () => {
 export const getLastBodyExercise = () => {
   return Number(localStorage.getItem(storageKeys.lastBodyExercise));
 };
+
+export const setLastBodyExercise = () => {
+  const timestampString = Date.now().toString();
+  localStorage.setItem(storageKeys.lastBodyExercise, timestampString);
+};

@@ -1,9 +1,9 @@
 import * as exercisesImages from 'app/assets/images';
-import { secondsToMiliseconds } from './utils';
 
+// duration in seconds
 export const exercises = {
   1: {
-    duration: secondsToMiliseconds(15),
+    duration: 15,
     repeat: false,
     switchSide: true,
     image: exercisesImages.exercise1,

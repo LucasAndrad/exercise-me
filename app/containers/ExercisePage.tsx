@@ -13,8 +13,10 @@ const TIMER_INTERVAL = 1000;
 
 export const ExercisePage = () => {
   const [currentExercise, setCurrentExercise] = useState(1);
+  // const [exercise, setExercise] = useState();
   const [timer, setTimer] = useState(0);
   const [round, setRound] = useState(0);
+  const [totalRounds, setTotalRounds] = useState(2);
   const [currentBodySide, setCurrentBodySide] = useState<boolean | string>(false);
 
   const handleOnClose = () => {
@@ -23,26 +25,28 @@ export const ExercisePage = () => {
   };
 
   // action I should define exercise duration and then rounds number
-  const firstExerciseDuration = () => {
+  const exerciseDuration = () => {
     const exercise = exercises[currentExercise];
     if (exercise.duration) return exercise.duration;
     if (!exercise.duration && exercise.repeat)
-      return secondsToMiliseconds(exercise.repeat * EXERCISE_REPEAT_TIME);
+      return exercise.repeat * EXERCISE_REPEAT_TIME;
   };
 
   useEffect(() => {
-    const firstDuration = firstExerciseDuration();
+    const firstDuration = exerciseDuration();
     setTimer(firstDuration);
     setRound(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentExercise]);
 
   const clearCurrentRoundInterval = (timerInterval: NodeJS.Timer) => {
     clearInterval(timerInterval);
-    const totalRounds = 2;
     if (round < totalRounds) {
-      setTimer(firstExerciseDuration());
+      setTimer(exerciseDuration());
       setRound(round + 1);
+    }
+    if (round === totalRounds) {
+      setCurrentExercise(currentExercise + 1);
     }
   };
 

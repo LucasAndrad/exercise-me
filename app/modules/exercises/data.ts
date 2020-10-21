@@ -6,6 +6,7 @@ export const exercises = {
     duration: 15,
     repeat: false,
     switchSide: true,
+    rounds: 2,
     image: exercisesImages.exercise1,
     title: 'Flexão lateral do tronco',
     description:
@@ -15,6 +16,7 @@ export const exercises = {
     duration: false,
     repeat: 10,
     switchSide: true,
+    rounds: 2,
     image: exercisesImages.exercise2,
     title: 'Postura e alongamento peitoral com rotação do tronco',
     description:

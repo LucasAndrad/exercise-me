@@ -2,6 +2,7 @@ import { storageKeys } from './constants';
 import { minutesToMiliseconds } from './utils';
 
 const defaultSettings = {
+  exercisesSelected: [1, 2],
   bodyExerciseInterval: minutesToMiliseconds(120),
   eyesExerciseInterval: minutesToMiliseconds(20),
 };
@@ -33,4 +34,9 @@ export const getLastBodyExercise = () => {
 export const setLastBodyExercise = () => {
   const timestampString = Date.now().toString();
   localStorage.setItem(storageKeys.lastBodyExercise, timestampString);
+};
+
+export const getSelectedExercises = () => {
+  const settings = getSettings();
+  return settings.exercisesSelected;
 };

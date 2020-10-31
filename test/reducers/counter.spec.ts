@@ -11,21 +11,15 @@ describe('reducers', () => {
     });
 
     it('should handle INCREMENT_COUNTER', () => {
-      expect(
-        counterReducer({ value: 1 }, { type: increment })
-      ).toMatchSnapshot();
+      expect(counterReducer({ value: 1 }, { type: increment })).toMatchSnapshot();
     });
 
     it('should handle DECREMENT_COUNTER', () => {
-      expect(
-        counterReducer({ value: 1 }, { type: decrement })
-      ).toMatchSnapshot();
+      expect(counterReducer({ value: 1 }, { type: decrement })).toMatchSnapshot();
     });
 
     it('should handle unknown action type', () => {
-      expect(
-        counterReducer({ value: 1 }, { type: 'unknown' })
-      ).toMatchSnapshot();
+      expect(counterReducer({ value: 1 }, { type: 'unknown' })).toMatchSnapshot();
     });
   });
 });

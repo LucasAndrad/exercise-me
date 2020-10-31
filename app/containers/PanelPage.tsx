@@ -25,10 +25,7 @@ export const PanelPage = () => {
   };
 
   const handleLastBodyExerciseChange = (event: any) => {
-    if (
-      event.key === storageKeys.lastBodyExercise &&
-      event.oldValue !== event.newValue
-    ) {
+    if (event.key === storageKeys.lastBodyExercise && event.oldValue !== event.newValue) {
       const settings = getSettings();
       const bodyInterval = Number(settings.bodyExerciseInterval);
       setNextBodyExercise(Number(event.newValue) + bodyInterval);
@@ -50,7 +47,7 @@ export const PanelPage = () => {
       exerciseTimeout = setTimeout(() => {
         openExerciseWindow();
         // this should be the interval
-      }, 3000);
+      }, 2000);
     }
 
     return () => {

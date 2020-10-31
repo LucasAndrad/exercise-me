@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { setLastBodyExercise } from 'app/modules/settings/actions';
+import { getSelectedExercises } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
 import { secondsToMiliseconds } from 'app/modules/exercises/utils';
 
@@ -12,7 +12,8 @@ const EXERCISE_REPEAT_TIME = 1;
 const TIMER_INTERVAL = 1000;
 
 export const ExercisePage = () => {
-  const [currentExercise, setCurrentExercise] = useState(1);
+  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+  const [currentExercise, setCurrentExercise] = useState();
   // const [exercise, setExercise] = useState();
   const [timer, setTimer] = useState(0);
   const [round, setRound] = useState(0);
@@ -26,16 +27,29 @@ export const ExercisePage = () => {
 
   // action I should define exercise duration and then rounds number
   const exerciseDuration = () => {
-    const exercise = exercises[currentExercise];
-    if (exercise.duration) return exercise.duration;
-    if (!exercise.duration && exercise.repeat)
-      return exercise.repeat * EXERCISE_REPEAT_TIME;
+    if (currentExercise.duration) return currentExercise.duration;
+    if (!currentExercise.duration && currentExercise.repeat)
+      return currentExercise.repeat * EXERCISE_REPEAT_TIME;
   };
 
-  // set all exercise values when currentExercise change
+  // set the current exercise object
   useEffect(() => {
+    const selectedExercises = getSelectedExercises();
+    if (currentExerciseIndex >= selectedExercises.length) {
+      handleOnClose();
+      return;
+    }
+
+    const exerciseIndex = selectedExercises[currentExerciseIndex];
+    setCurrentExercise(exercises[exerciseIndex]);
+  }, [currentExerciseIndex]);
+
+  // set all exercise values when current exercise changes
+  useEffect(() => {
+    if (!currentExercise) return;
+
     const firstDuration = exerciseDuration();
-    setTotalRounds(exercises[currentExercise].rounds);
+    setTotalRounds(currentExercise.rounds);
     setTimer(firstDuration);
     setRound(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,7 +64,7 @@ export const ExercisePage = () => {
     }
     // start next exercise
     if (round === totalRounds) {
-      setCurrentExercise(currentExercise + 1);
+      setCurrentExerciseIndex(currentExerciseIndex + 1);
     }
   };
 
@@ -78,14 +92,16 @@ export const ExercisePage = () => {
         Skip all exercises
       </button>
 
-      <div>
-        <h5>{exercises[currentExercise].title}</h5>
-        <img src={exercises[currentExercise].image} alt="exercise1" />
-        <p>{timer}</p>
-        <p>{round}</p>
-        <p>{exercises[currentExercise].description}</p>
-        <span>{exercises[currentExercise].duration}</span>
-      </div>
+      {currentExercise ? (
+        <div>
+          <h5>{currentExercise.title}</h5>
+          <img src={currentExercise.image} alt="exercise1" />
+          <p>{timer}</p>
+          <p>{round}</p>
+          <p>{currentExercise.description}</p>
+          <span>{currentExercise.duration}</span>
+        </div>
+      ) : null}
     </div>
   );
 };

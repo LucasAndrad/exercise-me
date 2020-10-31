@@ -2,7 +2,7 @@ import { storageKeys } from './constants';
 import { minutesToMiliseconds } from './utils';
 
 const defaultSettings = {
-  exercisesSelected: [1, 2],
+  exercisesSelected: [1, 2, 3, 4, 5],
   bodyExerciseInterval: minutesToMiliseconds(120),
   eyesExerciseInterval: minutesToMiliseconds(20),
 };

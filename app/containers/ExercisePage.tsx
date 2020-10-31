@@ -11,9 +11,20 @@ const EXERCISE_REPEAT_TIME = 1;
 // 1 second
 const TIMER_INTERVAL = 1000;
 
+type Exercise = {
+  id: number;
+  duration: boolean | number;
+  repeat: boolean | number;
+  switchSide: boolean;
+  rounds: number;
+  image: any;
+  title: string;
+  description: string;
+};
+
 export const ExercisePage = () => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [currentExercise, setCurrentExercise] = useState();
+  const [currentExercise, setCurrentExercise] = useState<Exercise | undefined>();
   // const [exercise, setExercise] = useState();
   const [timer, setTimer] = useState(0);
   const [round, setRound] = useState(0);
@@ -26,7 +37,9 @@ export const ExercisePage = () => {
   };
 
   // action I should define exercise duration and then rounds number
-  const exerciseDuration = () => {
+  const exerciseDuration = (): number => {
+    if (!currentExercise) return 10;
+
     if (currentExercise.duration) return currentExercise.duration;
     if (!currentExercise.duration && currentExercise.repeat)
       return currentExercise.repeat * EXERCISE_REPEAT_TIME;

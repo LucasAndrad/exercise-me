@@ -4,4 +4,5 @@ export const routes = {
   EXERCISE: '/exercise',
   START_DAY: '/',
   PANEL: '/panel',
+  SETTINGS: '/settings',
 };

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   getSettings,
   getLastBodyExercise,
   getStartDay,
 } from 'app/modules/settings/actions';
 import { storageKeys } from 'app/modules/settings/constants';
-import Counter from 'app/features/counter/Counter';
+import { routes } from 'app/constants/routes';
 
 const { remote } = require('electron');
 
 export const PanelPage = () => {
+  const history = useHistory();
   const [nextBodyExercise, setNextBodyExercise] = useState(0);
 
   const openExerciseWindow = () => {
@@ -71,7 +73,14 @@ export const PanelPage = () => {
   return (
     <>
       <h2>Next exercise at TIME HERE</h2>
-      <Counter />
+      <br />
+      <button type="button" onClick={() => history.push(routes.HOME)}>
+        Home Page
+      </button>
+      <br />
+      <button type="button" onClick={() => history.push(routes.SETTINGS)}>
+        Settings
+      </button>
     </>
   );
 };

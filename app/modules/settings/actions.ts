@@ -40,3 +40,9 @@ export const getSelectedExercises = () => {
   const settings = getSettings();
   return settings.exercisesSelected;
 };
+
+export const setSelectedExercises = (newExercises: Array<number>) => {
+  const settings = getSettings();
+  settings.exercisesSelected = newExercises;
+  localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
+};

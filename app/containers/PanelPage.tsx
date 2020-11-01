@@ -38,7 +38,7 @@ export const PanelPage = () => {
     window.addEventListener('storage', handleLastBodyExerciseChange);
 
     return () => {
-      window.removeEventListener('scroll', handleLastBodyExerciseChange);
+      window.removeEventListener('storage', handleLastBodyExerciseChange);
     };
   }, []);
 
@@ -49,7 +49,7 @@ export const PanelPage = () => {
       exerciseTimeout = setTimeout(() => {
         openExerciseWindow();
         // this should be the interval
-      }, 2000);
+      }, 5000);
     }
 
     return () => {

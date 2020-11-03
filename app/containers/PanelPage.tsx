@@ -7,6 +7,7 @@ import {
 } from 'app/modules/settings/actions';
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
+import { localDateTime } from 'app/modules/settings/utils';
 
 const { remote } = require('electron');
 
@@ -72,8 +73,6 @@ export const PanelPage = () => {
 
   return (
     <>
-      <h2>Next exercise at TIME HERE</h2>
-      <br />
       <button type="button" onClick={() => history.push(routes.HOME)}>
         Home Page
       </button>
@@ -81,6 +80,12 @@ export const PanelPage = () => {
       <button type="button" onClick={() => history.push(routes.SETTINGS)}>
         Settings
       </button>
+      <br />
+      <h2>
+        Next exercise at
+        <br />
+        {nextBodyExercise > 0 ? localDateTime(nextBodyExercise) : null}
+      </h2>
     </>
   );
 };

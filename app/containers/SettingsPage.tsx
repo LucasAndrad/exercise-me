@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { exercises } from 'app/modules/exercises/data';
-import { getSelectedExercises, setSelectedExercises } from 'app/modules/settings/actions';
+import {
+  getSelectedExercises,
+  setSelectedExercises,
+  getBodyExerciseInterval,
+  setBodyExerciseInterval,
+} from 'app/modules/settings/actions';
 import { routes } from 'app/constants/routes';
+import { minutesToMiliseconds, milesecondsToMinutes } from 'app/modules/settings/utils';
 
 const InputContainer = styled.div`
   padding: 10px;
@@ -18,8 +24,22 @@ const ExercisesContainer = styled.div`
 `;
 
 export const SettingsPage = () => {
+  // in minutes
+  const [bodyInterval, setBodyInterval] = useState(0);
   const [exercisesList, setExercisesList] = useState(getSelectedExercises());
   const history = useHistory();
+
+  useEffect(() => {
+    const currentBodyInterval = getBodyExerciseInterval();
+    const bodyIntervalInMinutes = milesecondsToMinutes(currentBodyInterval);
+    setBodyInterval(bodyIntervalInMinutes);
+  }, []);
+
+  const updateBodyInterval = (event: any) => {
+    const bodyIntervalInMinutes = minutesToMiliseconds(event.target.value);
+    setBodyInterval(Number(event.target.value));
+    setBodyExerciseInterval(bodyIntervalInMinutes);
+  };
 
   const updateSelectedExercise = (id: number) => {
     const selectedExercises = getSelectedExercises();
@@ -47,7 +67,13 @@ export const SettingsPage = () => {
       <button type="button" onClick={() => history.push(routes.PANEL)}>
         Panel
       </button>
-      <h5>Exercies List</h5>
+      <h5>Body Exercies Interval</h5>
+      <input
+        type="text"
+        value={bodyInterval}
+        onChange={(event) => updateBodyInterval(event)}
+      />
+      <h5>Body Exercies List</h5>
       <ExercisesContainer>
         {Object.values(exercises).map((exercise) => (
           <InputContainer key={exercise.id}>

@@ -46,3 +46,14 @@ export const setSelectedExercises = (newExercises: Array<number>) => {
   settings.exercisesSelected = newExercises;
   localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
 };
+
+export const getBodyExerciseInterval = () => {
+  const settings = getSettings();
+  return settings.bodyExerciseInterval;
+};
+
+export const setBodyExerciseInterval = (newInterval: number) => {
+  const settings = getSettings();
+  settings.bodyExerciseInterval = newInterval;
+  localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
+};

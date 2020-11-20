@@ -55,20 +55,20 @@ export const PanelPage = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   let exerciseTimeout: NodeJS.Timeout;
+  useEffect(() => {
+    let exerciseTimeout: NodeJS.Timeout;
 
-  //   if (nextBodyExercise > 0) {
-  //     exerciseTimeout = setTimeout(() => {
-  //       openExerciseWindow(routes.EXERCISE);
-  //       // this entire function should be the interval.
-  //     }, 5000);
-  //   }
+    if (nextEyesExercise > 0) {
+      exerciseTimeout = setTimeout(() => {
+        openExerciseWindow(routes.EYES_EXERCISE);
+        // this entire function should be the interval.
+      }, 5000);
+    }
 
-  //   return () => {
-  //     clearTimeout(exerciseTimeout);
-  //   };
-  // }, [nextBodyExercise]);
+    return () => {
+      clearTimeout(exerciseTimeout);
+    };
+  }, [nextEyesExercise]);
 
   useEffect(() => {
     const settings = getSettings();

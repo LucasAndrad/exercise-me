@@ -5,4 +5,5 @@ export const routes = {
   START_DAY: '/',
   PANEL: '/panel',
   SETTINGS: '/settings',
+  EYES_EXERCISE: '/eyes-exercise',
 };

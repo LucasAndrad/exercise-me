@@ -36,6 +36,15 @@ export const setLastBodyExercise = () => {
   localStorage.setItem(storageKeys.lastBodyExercise, timestampString);
 };
 
+export const getLastEyesExercise = () => {
+  return Number(localStorage.getItem(storageKeys.lastEyesExercise));
+};
+
+export const setLastEyesExercise = () => {
+  const timestampString = Date.now().toString();
+  localStorage.setItem(storageKeys.lastEyesExercise, timestampString);
+};
+
 export const getSelectedExercises = () => {
   const settings = getSettings();
   return settings.exercisesSelected;

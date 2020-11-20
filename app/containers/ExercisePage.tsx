@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSelectedExercises } from 'app/modules/settings/actions';
+import { getSelectedExercises, setLastBodyExercise } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
 import { secondsToMiliseconds } from 'app/modules/exercises/utils';
 
@@ -32,7 +32,7 @@ export const ExercisePage = () => {
   const [currentBodySide, setCurrentBodySide] = useState<boolean | string>(false);
 
   const handleOnClose = () => {
-    // setLastBodyExercise();
+    setLastBodyExercise();
     remote.getCurrentWindow().close();
   };
 
@@ -49,6 +49,7 @@ export const ExercisePage = () => {
   useEffect(() => {
     const selectedExercises = getSelectedExercises();
     if (currentExerciseIndex >= selectedExercises.length) {
+      setLastBodyExercise();
       handleOnClose();
       return;
     }

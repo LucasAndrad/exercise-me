@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { setLastEyesExercise } from 'app/modules/settings/actions';
+import {
+  getSelectedEyesExercises,
+  setLastEyesExercise,
+} from 'app/modules/settings/actions';
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
 import { EyesAnimation } from 'app/components/EyesAnimation';
 
@@ -17,7 +20,7 @@ type EyeExercise = {
 const TIMER_INTERVAL = 1000;
 
 export const EyesExercisePage = () => {
-  const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(1);
+  const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
   const [currentExercise, setCurrentExercise] = useState<EyeExercise | undefined>();
   const [timer, setTimer] = useState(0);
 
@@ -28,13 +31,14 @@ export const EyesExercisePage = () => {
 
   // set the current exercise object
   useEffect(() => {
-    // const selectedExercises = getSelectedExercises();
-    if (currentExerciseIndex > Object.keys(eyesExercises).length) {
+    const selectedEyesExercises = getSelectedEyesExercises();
+    if (currentExerciseIndex >= selectedEyesExercises.length) {
       setLastEyesExercise();
       handleOnClose();
       return;
     }
-    const nextExercise = eyesExercises[currentExerciseIndex];
+    const exerciseIndex = selectedEyesExercises[currentExerciseIndex];
+    const nextExercise = eyesExercises[exerciseIndex];
     setTimer(nextExercise.duration);
     setCurrentExercise(nextExercise);
   }, [currentExerciseIndex]);

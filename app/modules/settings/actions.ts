@@ -74,7 +74,6 @@ export const getSelectedEyesExercises = () => {
   const settings = getSettings();
   const selected =
     settings?.eyesExercisesSelected || defaultSettings.eyesExercisesSelected;
-  console.log(`selected: ${selected}`);
   return selected;
 };
 

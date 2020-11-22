@@ -4,6 +4,7 @@ import { minutesToMiliseconds } from './utils';
 const defaultSettings = {
   exercisesSelected: [1, 5],
   bodyExerciseInterval: minutesToMiliseconds(120),
+  eyesExercisesSelected: [1, 2, 3, 4],
   eyesExerciseInterval: minutesToMiliseconds(20),
 };
 
@@ -27,6 +28,7 @@ export const setStartDay = () => {
   localStorage.setItem(storageKeys.startDay, timestampString);
 };
 
+// Body exercises
 export const getLastBodyExercise = () => {
   return Number(localStorage.getItem(storageKeys.lastBodyExercise));
 };
@@ -34,15 +36,6 @@ export const getLastBodyExercise = () => {
 export const setLastBodyExercise = () => {
   const timestampString = Date.now().toString();
   localStorage.setItem(storageKeys.lastBodyExercise, timestampString);
-};
-
-export const getLastEyesExercise = () => {
-  return Number(localStorage.getItem(storageKeys.lastEyesExercise));
-};
-
-export const setLastEyesExercise = () => {
-  const timestampString = Date.now().toString();
-  localStorage.setItem(storageKeys.lastEyesExercise, timestampString);
 };
 
 export const getSelectedExercises = () => {
@@ -64,5 +57,37 @@ export const getBodyExerciseInterval = () => {
 export const setBodyExerciseInterval = (newInterval: number) => {
   const settings = getSettings();
   settings.bodyExerciseInterval = newInterval;
+  localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
+};
+
+// Eyes exercises
+export const getLastEyesExercise = () => {
+  return Number(localStorage.getItem(storageKeys.lastEyesExercise));
+};
+
+export const setLastEyesExercise = () => {
+  const timestampString = Date.now().toString();
+  localStorage.setItem(storageKeys.lastEyesExercise, timestampString);
+};
+
+export const getSelectedEyesExercises = () => {
+  const settings = getSettings();
+  return settings.eyesExercisesSelected;
+};
+
+export const setSelectedEyesExercises = (newExercises: Array<number>) => {
+  const settings = getSettings();
+  settings.eyesExercisesSelected = newExercises;
+  localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
+};
+
+export const getEyesExerciseInterval = () => {
+  const settings = getSettings();
+  return settings.eyesExerciseInterval;
+};
+
+export const setEyesExerciseInterval = (newInterval: number) => {
+  const settings = getSettings();
+  settings.eyesExerciseInterval = newInterval;
   localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
 };

@@ -32,8 +32,7 @@ export default function Routes() {
         <Route path={routes.EYES_EXERCISE} component={EyesExercisePage} />
         <Route path={routes.PANEL} component={PanelPage} />
         <Route path={routes.SETTINGS} component={SettingsPage} />
-        {/* <Route path={routes.START_DAY} component={StartDayPage} /> */}
-        <Route path="/" component={EyesExercisePage} />
+        <Route path={routes.START_DAY} component={StartDayPage} />
       </Switch>
     </App>
   );

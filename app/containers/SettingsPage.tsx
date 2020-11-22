@@ -51,13 +51,13 @@ export const SettingsPage = () => {
   }, []);
 
   const updateBodyInterval = (event: any) => {
-    const bodyIntervalInMinutes = minutesToMiliseconds(event.target.value);
+    const bodyIntervalInMinutes = minutesToMiliseconds(Number(event.target.value));
     setBodyInterval(Number(event.target.value));
     setBodyExerciseInterval(bodyIntervalInMinutes);
   };
 
   const updateEyesInterval = (event: any) => {
-    const eyesIntervalInMinutes = minutesToMiliseconds(event.target.value);
+    const eyesIntervalInMinutes = minutesToMiliseconds(Number(event.target.value));
     setEyesInterval(Number(event.target.value));
     setEyesExerciseInterval(eyesIntervalInMinutes);
   };

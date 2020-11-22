@@ -5,10 +5,13 @@ import {
   getLastBodyExercise,
   getStartDay,
   getLastEyesExercise,
+  getEyesExerciseInterval,
+  getBodyExerciseInterval,
 } from 'app/modules/settings/actions';
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime } from 'app/modules/settings/utils';
+import { eyesExercises } from 'app/modules/exercises/eyesExercises';
 
 const { remote } = require('electron');
 
@@ -41,7 +44,8 @@ export const PanelPage = () => {
     if (event.key === storageKeys.lastEyesExercise && event.oldValue !== event.newValue) {
       const settings = getSettings();
       const eyesExerciseInterval = Number(settings.eyesExerciseInterval);
-      setNextEyesExercise(Number(event.value) + eyesExerciseInterval);
+      const newNextEyesExercise = Number(event.newValue) + eyesExerciseInterval;
+      setNextEyesExercise(newNextEyesExercise);
     }
   };
 
@@ -56,17 +60,28 @@ export const PanelPage = () => {
   }, []);
 
   useEffect(() => {
-    let exerciseTimeout: NodeJS.Timeout;
-
-    if (nextEyesExercise > 0) {
-      exerciseTimeout = setTimeout(() => {
-        openExerciseWindow(routes.EYES_EXERCISE);
-        // this entire function should be the interval.
-      }, 5000);
+    let interval: number;
+    if (nextBodyExercise > 0) {
+      interval = setInterval(() => {
+        openExerciseWindow(routes.EXERCISE);
+      }, getBodyExerciseInterval());
     }
 
     return () => {
-      clearTimeout(exerciseTimeout);
+      clearTimeout(interval);
+    };
+  }, [nextBodyExercise]);
+
+  useEffect(() => {
+    let interval: number;
+    if (nextEyesExercise > 0) {
+      interval = setInterval(() => {
+        openExerciseWindow(routes.EYES_EXERCISE);
+      }, getEyesExerciseInterval());
+    }
+
+    return () => {
+      clearTimeout(interval);
     };
   }, [nextEyesExercise]);
 
@@ -109,12 +124,18 @@ export const PanelPage = () => {
         <br />
         {nextBodyExercise > 0 ? localDateTime(nextBodyExercise) : null}
       </h2>
+      <button type="button" onClick={() => openExerciseWindow(routes.EXERCISE)}>
+        Run Body Exercises Now
+      </button>
       <br />
       <h2>
         Next eyes exercise at
         <br />
         {nextEyesExercise > 0 ? localDateTime(nextEyesExercise) : null}
       </h2>
+      <button type="button" onClick={() => openExerciseWindow(routes.EYES_EXERCISE)}>
+        Run Eyes Exercises Now
+      </button>
     </>
   );
 };

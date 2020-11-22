@@ -10,8 +10,7 @@ import {
 } from 'app/modules/settings/actions';
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
-import { localDateTime } from 'app/modules/settings/utils';
-import { eyesExercises } from 'app/modules/exercises/eyesExercises';
+import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
 
 const { remote } = require('electron');
 
@@ -19,6 +18,8 @@ export const PanelPage = () => {
   const history = useHistory();
   const [nextBodyExercise, setNextBodyExercise] = useState(0);
   const [nextEyesExercise, setNextEyesExercise] = useState(0);
+  const [bodyExercisesRunning, setBodyExercisesRunning] = useState(false);
+  const [eyesExercisesRunning, setEyesExercisesRunning] = useState(false);
 
   const openExerciseWindow = (path: string) => {
     const { BrowserWindow } = remote;
@@ -32,11 +33,31 @@ export const PanelPage = () => {
     exerciseWindow.loadURL(`file://${__dirname}/app.html#${path}`);
   };
 
+  /**
+   * Check if any of the exercises is already running,
+   * if yes it'll push the next exercise in 30 minutes from now
+   */
+  const handleOpenWindow = (path: string) => {
+    if (eyesExercisesRunning || bodyExercisesRunning) {
+      const next = Date.now() + minutesToMiliseconds(30);
+      if (path === routes.EXERCISE) setNextBodyExercise(next);
+      if (path === routes.EYES_EXERCISE) setNextEyesExercise(next);
+
+      return;
+    }
+    if (!eyesExercisesRunning && !bodyExercisesRunning) {
+      if (path === routes.EXERCISE) setBodyExercisesRunning(true);
+      if (path === routes.EYES_EXERCISE) setEyesExercisesRunning(true);
+      openExerciseWindow(path);
+    }
+  };
+
   const handleLastBodyExerciseChange = (event: any) => {
     if (event.key === storageKeys.lastBodyExercise && event.oldValue !== event.newValue) {
       const settings = getSettings();
       const bodyInterval = Number(settings.bodyExerciseInterval);
       setNextBodyExercise(Number(event.newValue) + bodyInterval);
+      setBodyExercisesRunning(false);
     }
   };
 
@@ -46,6 +67,7 @@ export const PanelPage = () => {
       const eyesExerciseInterval = Number(settings.eyesExerciseInterval);
       const newNextEyesExercise = Number(event.newValue) + eyesExerciseInterval;
       setNextEyesExercise(newNextEyesExercise);
+      setEyesExercisesRunning(false);
     }
   };
 
@@ -63,7 +85,7 @@ export const PanelPage = () => {
     let interval: number;
     if (nextBodyExercise > 0) {
       interval = setInterval(() => {
-        openExerciseWindow(routes.EXERCISE);
+        handleOpenWindow(routes.EXERCISE);
       }, getBodyExerciseInterval());
     }
 
@@ -76,7 +98,7 @@ export const PanelPage = () => {
     let interval: number;
     if (nextEyesExercise > 0) {
       interval = setInterval(() => {
-        openExerciseWindow(routes.EYES_EXERCISE);
+        handleOpenWindow(routes.EYES_EXERCISE);
       }, getEyesExerciseInterval());
     }
 
@@ -124,7 +146,7 @@ export const PanelPage = () => {
         <br />
         {nextBodyExercise > 0 ? localDateTime(nextBodyExercise) : null}
       </h2>
-      <button type="button" onClick={() => openExerciseWindow(routes.EXERCISE)}>
+      <button type="button" onClick={() => handleOpenWindow(routes.EXERCISE)}>
         Run Body Exercises Now
       </button>
       <br />
@@ -133,7 +155,7 @@ export const PanelPage = () => {
         <br />
         {nextEyesExercise > 0 ? localDateTime(nextEyesExercise) : null}
       </h2>
-      <button type="button" onClick={() => openExerciseWindow(routes.EYES_EXERCISE)}>
+      <button type="button" onClick={() => handleOpenWindow(routes.EYES_EXERCISE)}>
         Run Eyes Exercises Now
       </button>
     </>

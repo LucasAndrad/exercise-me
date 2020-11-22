@@ -72,7 +72,10 @@ export const setLastEyesExercise = () => {
 
 export const getSelectedEyesExercises = () => {
   const settings = getSettings();
-  return settings.eyesExercisesSelected;
+  const selected =
+    settings?.eyesExercisesSelected || defaultSettings.eyesExercisesSelected;
+  console.log(`selected: ${selected}`);
+  return selected;
 };
 
 export const setSelectedEyesExercises = (newExercises: Array<number>) => {

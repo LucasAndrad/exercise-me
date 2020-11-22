@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { exercises } from 'app/modules/exercises/data';
+import { eyesExercises } from 'app/modules/exercises/eyesExercises';
 import {
   getSelectedExercises,
   setSelectedExercises,
@@ -81,25 +82,25 @@ export const SettingsPage = () => {
     setExercisesList(newSelectedExercises);
   };
 
-  // const updateSelectedEyesExercise = (id: number) => {
-  //   const selectedExercises = getSelectedExercises();
-  //   // remove from list
-  //   if (selectedExercises.includes(id)) {
-  //     const newSelectedExercises = selectedExercises.filter(
-  //       (exerciseId: number) => exerciseId !== id
-  //     );
-  //     setSelectedExercises(newSelectedExercises);
-  //     setExercisesList(newSelectedExercises);
-  //     return;
-  //   }
+  const updateSelectedEyesExercise = (id: number) => {
+    const selectedEyesExercises = getSelectedEyesExercises();
+    // remove from list
+    if (selectedEyesExercises.includes(id)) {
+      const newSelectedEyesExercises = selectedEyesExercises.filter(
+        (exerciseId: number) => exerciseId !== id
+      );
+      setSelectedEyesExercises(newSelectedEyesExercises);
+      setEyesExercisesList(newSelectedEyesExercises);
+      return;
+    }
 
-  //   // add to the list
-  //   const newSelectedExercises = [...selectedExercises, id];
-  //   // sort the array
-  //   newSelectedExercises.sort((a: number, b: number) => a - b);
-  //   setSelectedExercises(newSelectedExercises);
-  //   setExercisesList(newSelectedExercises);
-  // };
+    // add to the list
+    const newSelectedEyesExercises = [...selectedEyesExercises, id];
+    // sort the array
+    newSelectedEyesExercises.sort((a: number, b: number) => a - b);
+    setSelectedEyesExercises(newSelectedEyesExercises);
+    setEyesExercisesList(newSelectedEyesExercises);
+  };
 
   return (
     <div>
@@ -113,6 +114,21 @@ export const SettingsPage = () => {
         value={eyesInterval}
         onChange={(event) => updateEyesInterval(event)}
       />
+      <h5>Body Exercies List</h5>
+      <ExercisesContainer>
+        {Object.values(eyesExercises).map((eyesExercise) => (
+          <InputContainer key={eyesExercise.id}>
+            <label>
+              {eyesExercise.name}
+              <input
+                type="checkbox"
+                checked={eyesExercisesList.includes(eyesExercise.id)}
+                onChange={() => updateSelectedEyesExercise(eyesExercise.id)}
+              />
+            </label>
+          </InputContainer>
+        ))}
+      </ExercisesContainer>
       <h5>Body Exercies Interval</h5>
       <input
         type="text"

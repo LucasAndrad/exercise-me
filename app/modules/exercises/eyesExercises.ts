@@ -1,4 +1,4 @@
-import { EyesAnimations } from './constants';
+import { EyesAnimationsNames } from './constants';
 
 export const eyesExercises = {
   1: {
@@ -7,7 +7,7 @@ export const eyesExercises = {
       'Mova os olhos para cima e para baixo, igual a animação abaixo, sem pressa e durante 20 segundos.',
     duration: 20,
     hasAnimation: true,
-    animationName: EyesAnimations.UpDown,
+    animationName: EyesAnimationsNames.UpDown,
   },
   2: {
     name: 'Para direita e para a esquerda',
@@ -15,7 +15,7 @@ export const eyesExercises = {
       'Mova os olhos para direita e para a esquerda, igual a animação abaixo, sem pressa e durante 20 segundos.',
     duration: 20,
     hasAnimation: true,
-    animationName: EyesAnimations.LeftRight,
+    animationName: EyesAnimationsNames.LeftRight,
   },
   3: {
     name: 'Sentido horário',
@@ -23,7 +23,7 @@ export const eyesExercises = {
       'Gire os olhos no sentido horário, igual a animação abaixo, sem pressa e durante 20 segundos.',
     duration: 20,
     hasAnimation: true,
-    animationName: EyesAnimations.CloseWise,
+    animationName: EyesAnimationsNames.ClockWise,
   },
   4: {
     name: 'Regra 20-20-20',

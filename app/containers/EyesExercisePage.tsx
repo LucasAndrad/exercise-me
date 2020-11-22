@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { setLastEyesExercise } from 'app/modules/settings/actions';
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
+import { EyesAnimation } from 'app/components/EyesAnimation';
 
 const { remote } = require('electron');
 
@@ -8,6 +9,8 @@ type EyeExercise = {
   name: string;
   description: string;
   duration: number;
+  hasAnimation: boolean;
+  animationName?: string;
 };
 
 // 1 second
@@ -26,7 +29,7 @@ export const EyesExercisePage = () => {
   // set the current exercise object
   useEffect(() => {
     // const selectedExercises = getSelectedExercises();
-    if (currentExerciseIndex >= Object.keys(eyesExercises).length) {
+    if (currentExerciseIndex > Object.keys(eyesExercises).length) {
       setLastEyesExercise();
       handleOnClose();
       return;
@@ -67,6 +70,10 @@ export const EyesExercisePage = () => {
           <h4>{currentExercise.name}</h4>
           <p>{currentExercise.description}</p>
           {timer}
+
+          {currentExercise.hasAnimation && currentExercise.animationName ? (
+            <EyesAnimation animationName={currentExercise.animationName} />
+          ) : null}
         </div>
       ) : null}
     </div>

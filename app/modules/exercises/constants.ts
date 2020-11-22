@@ -1,5 +1,5 @@
-export enum Animations {
+export enum EyesAnimationsNames {
   UpDown = 'UpDown',
   LeftRight = 'LeftRight',
-  CloseWise = 'ClockWise',
+  ClockWise = 'ClockWise',
 }

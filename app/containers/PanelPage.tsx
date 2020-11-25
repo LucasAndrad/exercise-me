@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import {
   getSettings,
   getLastBodyExercise,
@@ -11,8 +12,23 @@ import {
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
+import { clockIcon, settingsIcon } from 'app/assets/images';
 
 const { remote } = require('electron');
+
+const Container = styled.div`
+  max-width: 100%;
+  padding: 2%;
+`;
+const FullRow = styled.div`
+  text-align: right;
+`;
+
+const IconClick = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+`;
 
 export const PanelPage = () => {
   const history = useHistory();
@@ -132,11 +148,16 @@ export const PanelPage = () => {
   }, []);
 
   return (
-    <>
-      <button type="button" onClick={() => history.push(routes.HOME)}>
-        Home Page
-      </button>
-      <br />
+    <Container>
+      <FullRow>
+        <IconClick
+          width="25"
+          height="25"
+          src={settingsIcon}
+          alt="settings-icon"
+          onClick={() => history.push(routes.SETTINGS)}
+        />
+      </FullRow>
       <button type="button" onClick={() => history.push(routes.SETTINGS)}>
         Settings
       </button>
@@ -158,6 +179,9 @@ export const PanelPage = () => {
       <button type="button" onClick={() => handleOpenWindow(routes.EYES_EXERCISE)}>
         Run Eyes Exercises Now
       </button>
-    </>
+      <button type="button" onClick={() => history.push(routes.HOME)}>
+        Home Page
+      </button>
+    </Container>
   );
 };

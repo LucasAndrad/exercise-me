@@ -5,4 +5,9 @@ import exercise4 from './exercise-4.png';
 import exercise5 from './exercise-5.png';
 import exercise6 from './exercise-6.png';
 
+import clockIcon from './clock-icon.svg';
+import settingsIcon from './settings-icon.svg';
+
 export { exercise1, exercise2, exercise3, exercise4, exercise5, exercise6 };
+
+export { clockIcon, settingsIcon };

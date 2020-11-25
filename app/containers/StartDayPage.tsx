@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { setStartDay } from 'app/modules/settings/actions';
-import { routes, colors } from 'app/constants';
+import { routes } from 'app/constants';
 import { Button } from 'app/components';
 import i18n from 'app/i18n';
 

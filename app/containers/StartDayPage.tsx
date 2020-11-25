@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { setStartDay } from 'app/modules/settings/actions';
 import { routes, colors } from 'app/constants';
 import { Button } from 'app/components';
+import i18n from 'app/i18n';
 
 const StartDayButton = styled(Button)`
   padding: 15px 30px;
   font-size: 1.8rem;
-  width: 200px;
+  min-width: 200px;
   text-transform: uppercase;
   font-family: MontserratLight;
   letter-spacing: 2px;
@@ -24,11 +25,11 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const FullRow = styled.div`
-  width: 100%;
-`;
+type H1Props = {
+  mt: string;
+};
 
-const H1 = styled.h1`
+const H1 = styled.h1<H1Props>`
   font-size: 3rem;
   text-transform: uppercase;
   font-family: MontserratLight;
@@ -46,9 +47,9 @@ export const StartDayPage = () => {
   return (
     <Container>
       <div>
-        <H1 mt="0px">Start your day!</H1>
+        <H1 mt="0px">{i18n.t('startDay.title')}</H1>
         <StartDayButton type="button" onClick={() => handleStartDay()}>
-          Start
+          {i18n.t('startDay.button')}
         </StartDayButton>
       </div>
     </Container>

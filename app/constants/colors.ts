@@ -3,4 +3,5 @@ export const colors = {
   buttonBlue: '#5887ff',
   buttonHoverBlue: '#6b66ff',
   white: '#ffffff',
+  lightGray: '#dcdcdc',
 };

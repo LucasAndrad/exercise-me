@@ -7,7 +7,8 @@ import exercise6 from './exercise-6.png';
 
 import clockIcon from './clock-icon.svg';
 import settingsIcon from './settings-icon.svg';
+import checkIcon from './check-icon.svg';
 
 export { exercise1, exercise2, exercise3, exercise4, exercise5, exercise6 };
 
-export { clockIcon, settingsIcon };
+export { clockIcon, settingsIcon, checkIcon };

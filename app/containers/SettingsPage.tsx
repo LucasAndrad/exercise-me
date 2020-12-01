@@ -15,6 +15,7 @@ import {
 } from 'app/modules/settings/actions';
 import { routes } from 'app/constants/routes';
 import { minutesToMiliseconds, milesecondsToMinutes } from 'app/modules/settings/utils';
+import { Input, Checkbox } from 'app/components';
 
 const InputContainer = styled.div`
   padding: 10px;
@@ -109,7 +110,7 @@ export const SettingsPage = () => {
         Panel
       </button>
       <h5>Eyes Exercies Interval</h5>
-      <input
+      <Input
         type="text"
         value={eyesInterval}
         onChange={(event) => updateEyesInterval(event)}
@@ -118,19 +119,17 @@ export const SettingsPage = () => {
       <ExercisesContainer>
         {Object.values(eyesExercises).map((eyesExercise) => (
           <InputContainer key={eyesExercise.id}>
-            <label>
-              {eyesExercise.name}
-              <input
-                type="checkbox"
-                checked={eyesExercisesList.includes(eyesExercise.id)}
-                onChange={() => updateSelectedEyesExercise(eyesExercise.id)}
-              />
-            </label>
+            <Checkbox
+              type="checkbox"
+              checked={eyesExercisesList.includes(eyesExercise.id)}
+              onChange={() => updateSelectedEyesExercise(eyesExercise.id)}
+            />
+            <h5>{eyesExercise.name}</h5>
           </InputContainer>
         ))}
       </ExercisesContainer>
       <h5>Body Exercies Interval</h5>
-      <input
+      <Input
         type="text"
         value={bodyInterval}
         onChange={(event) => updateBodyInterval(event)}
@@ -141,13 +140,13 @@ export const SettingsPage = () => {
           <InputContainer key={exercise.id}>
             <label>
               {exercise.title}
-              <input
+              <Checkbox
                 type="checkbox"
                 checked={exercisesList.includes(exercise.id)}
                 onChange={() => updateSelectedExercise(exercise.id)}
               />
             </label>
-            <img src={exercise.image} alt="exercise1" width="60" height="80" />
+            <img src={exercise.image} alt="exercise1" width="85" height="110" />
             <br />
           </InputContainer>
         ))}

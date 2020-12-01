@@ -13,6 +13,7 @@ import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
 import { clockIcon, settingsIcon } from 'app/assets/images';
+import { Button, Divider } from 'app/components';
 
 const { remote } = require('electron');
 
@@ -20,7 +21,8 @@ const Container = styled.div`
   max-width: 100%;
   padding: 2%;
 `;
-const FullRow = styled.div`
+
+const SettingsRow = styled.div`
   text-align: right;
 `;
 
@@ -28,6 +30,49 @@ const IconClick = styled.img`
   width: 25px;
   height: 25px;
   cursor: pointer;
+`;
+
+const Times = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+`;
+
+const TimeContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const H2 = styled.h2`
+  font-size: 2.5rem;
+  font-family: MontserratLight;
+`;
+
+type ClockIconProps = {
+  ml?: string;
+  mr?: string;
+};
+const ClockIcon = styled.img<ClockIconProps>`
+  width: 50px;
+  height: 50px;
+  margin-left: ${(props) => props.ml || 'inherit'};
+  margin-right: ${(props) => props.mr || 'inherit'};
+`;
+
+const ButtonNext = styled(Button)`
+  font-size: 0.8rem;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 2px;
+`;
+
+const ButtonRow = styled.div`
+  width: 100%;
+  text-align: center;
 `;
 
 export const PanelPage = () => {
@@ -149,7 +194,7 @@ export const PanelPage = () => {
 
   return (
     <Container>
-      <FullRow>
+      <SettingsRow>
         <IconClick
           width="25"
           height="25"
@@ -157,31 +202,45 @@ export const PanelPage = () => {
           alt="settings-icon"
           onClick={() => history.push(routes.SETTINGS)}
         />
-      </FullRow>
-      <button type="button" onClick={() => history.push(routes.SETTINGS)}>
-        Settings
-      </button>
+      </SettingsRow>
       <br />
-      <h2>
-        Next body exercise at
-        <br />
-        {nextBodyExercise > 0 ? localDateTime(nextBodyExercise) : null}
-      </h2>
-      <button type="button" onClick={() => handleOpenWindow(routes.EXERCISE)}>
-        Run Body Exercises Now
-      </button>
-      <br />
-      <h2>
-        Next eyes exercise at
-        <br />
-        {nextEyesExercise > 0 ? localDateTime(nextEyesExercise) : null}
-      </h2>
-      <button type="button" onClick={() => handleOpenWindow(routes.EYES_EXERCISE)}>
-        Run Eyes Exercises Now
-      </button>
-      <button type="button" onClick={() => history.push(routes.HOME)}>
+      <Times>
+        <div style={{ width: '100%' }}>
+          <TimeContainer>
+            <H2>
+              Next body exercise at
+              {nextBodyExercise > 0 ? ` ${localDateTime(nextBodyExercise)}` : null}
+            </H2>
+            <ClockIcon src={clockIcon} alt="clock-icon" ml="2%" />
+          </TimeContainer>
+          <ButtonRow>
+            <ButtonNext type="button" onClick={() => handleOpenWindow(routes.EXERCISE)}>
+              Run Body Exercises Now
+            </ButtonNext>
+          </ButtonRow>
+
+          <Divider />
+
+          <TimeContainer>
+            <ClockIcon src={clockIcon} alt="clock-icon" mr="2%" />
+            <H2>
+              Next eyes exercise at
+              {nextEyesExercise > 0 ? ` ${localDateTime(nextEyesExercise)}` : null}
+            </H2>
+          </TimeContainer>
+          <ButtonRow>
+            <ButtonNext
+              type="button"
+              onClick={() => handleOpenWindow(routes.EYES_EXERCISE)}
+            >
+              Run Eyes Exercises Now
+            </ButtonNext>
+          </ButtonRow>
+        </div>
+      </Times>
+      {/* <button type="button" onClick={() => history.push(routes.HOME)}>
         Home Page
-      </button>
+      </button> */}
     </Container>
   );
 };

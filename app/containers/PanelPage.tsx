@@ -12,8 +12,9 @@ import {
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
-import { clockIcon, settingsIcon } from 'app/assets/images';
+import { clockIcon, settingsIcon, bodyIcon, eyeIcon } from 'app/assets/images';
 import { Button, Divider, IconClick } from 'app/components';
+import i18n from 'app/i18n';
 
 const { remote } = require('electron');
 
@@ -41,8 +42,11 @@ const TimeContainer = styled.div`
 `;
 
 const H2 = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: MontserratLight;
+  @media only screen and (max-width: 1024px) {
+    font-size: 1.7rem;
+  }
 `;
 
 type ClockIconProps = {
@@ -50,10 +54,14 @@ type ClockIconProps = {
   mr?: string;
 };
 const ClockIcon = styled.img<ClockIconProps>`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-left: ${(props) => props.ml || 'inherit'};
   margin-right: ${(props) => props.mr || 'inherit'};
+  @media only screen and (max-width: 1024px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 const ButtonNext = styled(Button)`
@@ -201,33 +209,35 @@ export const PanelPage = () => {
       <Times>
         <div style={{ width: '100%' }}>
           <TimeContainer>
+            <ClockIcon src={bodyIcon} alt="body-icon" mr="2%" />
             <H2>
-              Next body exercise at
+              {i18n.t('panel.nextBody')}
               {nextBodyExercise > 0 ? ` ${localDateTime(nextBodyExercise)}` : null}
             </H2>
             <ClockIcon src={clockIcon} alt="clock-icon" ml="2%" />
           </TimeContainer>
           <ButtonRow>
             <ButtonNext type="button" onClick={() => handleOpenWindow(routes.EXERCISE)}>
-              Run Body Exercises Now
+              {i18n.t('panel.runBody')}
             </ButtonNext>
           </ButtonRow>
 
           <Divider />
 
           <TimeContainer>
-            <ClockIcon src={clockIcon} alt="clock-icon" mr="2%" />
+            <ClockIcon src={eyeIcon} alt="eye-icon" mr="2%" />
             <H2>
-              Next eyes exercise at
+              {i18n.t('panel.nextEye')}
               {nextEyesExercise > 0 ? ` ${localDateTime(nextEyesExercise)}` : null}
             </H2>
+            <ClockIcon src={clockIcon} alt="clock-icon" ml="2%" />
           </TimeContainer>
           <ButtonRow>
             <ButtonNext
               type="button"
               onClick={() => handleOpenWindow(routes.EYES_EXERCISE)}
             >
-              Run Eyes Exercises Now
+              {i18n.t('panel.runEye')}
             </ButtonNext>
           </ButtonRow>
         </div>

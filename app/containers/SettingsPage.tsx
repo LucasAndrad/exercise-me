@@ -33,7 +33,7 @@ const EyesInputContainer = styled.div`
   height: fit-content;
   padding: 15px 10px;
   margin: 10px;
-  @media only screen and (max-width: 1020px) {
+  @media only screen and (max-width: 1024px) {
     width: calc(30% - 30px);
   }
 `;
@@ -48,7 +48,7 @@ const BodyInputContainer = styled.div`
   padding: 15px 10px;
   margin: 10px;
 
-  @media only screen and (max-width: 1020px) {
+  @media only screen and (max-width: 1024px) {
     width: calc(30% - 30px);
   }
 `;

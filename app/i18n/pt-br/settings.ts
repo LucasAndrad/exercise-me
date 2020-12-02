@@ -3,9 +3,9 @@ export const settings = {
   // eyes
   eyesInterval: 'Intervalo para exercícios dos olhos',
   eyesIntervalUnit: '(em minutos)',
-  eyesExercisesList: 'Lista de Exercícios para os olhos',
+  eyesExercisesList: 'Lista de exercícios para os olhos',
   // body
-  bodyInterval: 'Intervalo para exercícios do corpo',
+  bodyInterval: 'Intervalo do alongamento',
   bodyIntervalUnit: '(em minutos)',
-  bodyExercisesList: 'Lista de Exercícios para o corpo',
+  bodyExercisesList: 'Lista de exercícios de alogamento',
 };

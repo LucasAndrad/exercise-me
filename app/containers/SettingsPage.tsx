@@ -16,7 +16,8 @@ import {
 } from 'app/modules/settings/actions';
 import { routes } from 'app/constants/routes';
 import { minutesToMiliseconds, milesecondsToMinutes } from 'app/modules/settings/utils';
-import { Input, Checkbox, Divider } from 'app/components';
+import { Input, Checkbox, Divider, IconClick } from 'app/components';
+import { arrowLeftIcon } from 'app/assets/images';
 import i18n from 'app/i18n';
 
 const Container = styled.div`
@@ -159,10 +160,14 @@ export const SettingsPage = () => {
 
   return (
     <Container>
+      <IconClick
+        width="25"
+        height="25"
+        src={arrowLeftIcon}
+        alt="arrow-left-icon"
+        onClick={() => history.push(routes.PANEL)}
+      />
       <h2>{i18n.t('settings.title')}</h2>
-      <button type="button" onClick={() => history.push(routes.PANEL)}>
-        Panel
-      </button>
       <h4>
         {`${i18n.t('settings.eyesInterval')} ${i18n.t('settings.eyesIntervalUnit')}`}
       </h4>

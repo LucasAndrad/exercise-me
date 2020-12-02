@@ -13,7 +13,7 @@ import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
 import { clockIcon, settingsIcon } from 'app/assets/images';
-import { Button, Divider } from 'app/components';
+import { Button, Divider, IconClick } from 'app/components';
 
 const { remote } = require('electron');
 
@@ -24,12 +24,6 @@ const Container = styled.div`
 
 const SettingsRow = styled.div`
   text-align: right;
-`;
-
-const IconClick = styled.img`
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
 `;
 
 const Times = styled.div`

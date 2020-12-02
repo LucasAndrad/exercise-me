@@ -18,7 +18,7 @@ const StartDayButton = styled(Button)`
 const Container = styled.div`
   text-align: center;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 16px);
   overflow-y: hidden;
   display: flex;
   align-items: center;

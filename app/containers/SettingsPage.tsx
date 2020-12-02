@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -16,6 +17,7 @@ import {
 import { routes } from 'app/constants/routes';
 import { minutesToMiliseconds, milesecondsToMinutes } from 'app/modules/settings/utils';
 import { Input, Checkbox } from 'app/components';
+import i18n from 'app/i18n';
 
 const InputContainer = styled.div`
   padding: 10px;
@@ -105,17 +107,19 @@ export const SettingsPage = () => {
 
   return (
     <div>
-      <h2>Settings</h2>
+      <h2>{i18n.t('settings.title')}</h2>
       <button type="button" onClick={() => history.push(routes.PANEL)}>
         Panel
       </button>
-      <h5>Eyes Exercies Interval</h5>
+      <h5>
+        {`${i18n.t('settings.eyesInterval')} ${i18n.t('settings.eyesIntervalUnit')}`}
+      </h5>
       <Input
         type="text"
         value={eyesInterval}
         onChange={(event) => updateEyesInterval(event)}
       />
-      <h5>Body Exercies List</h5>
+      <h5>{i18n.t('settings.eyesExercisesList')}</h5>
       <ExercisesContainer>
         {Object.values(eyesExercises).map((eyesExercise) => (
           <InputContainer key={eyesExercise.id}>
@@ -128,13 +132,15 @@ export const SettingsPage = () => {
           </InputContainer>
         ))}
       </ExercisesContainer>
-      <h5>Body Exercies Interval</h5>
+      <h5>
+        {`${i18n.t('settings.bodyInterval')} ${i18n.t('settings.bodyIntervalUnit')}`}
+      </h5>
       <Input
         type="text"
         value={bodyInterval}
         onChange={(event) => updateBodyInterval(event)}
       />
-      <h5>Body Exercies List</h5>
+      <h5>{i18n.t('settings.bodyExercisesList')}</h5>
       <ExercisesContainer>
         {Object.values(exercises).map((exercise) => (
           <InputContainer key={exercise.id}>

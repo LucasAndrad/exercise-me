@@ -16,12 +16,33 @@ import {
 } from 'app/modules/settings/actions';
 import { routes } from 'app/constants/routes';
 import { minutesToMiliseconds, milesecondsToMinutes } from 'app/modules/settings/utils';
-import { Input, Checkbox } from 'app/components';
+import { Input, Checkbox, Divider } from 'app/components';
 import i18n from 'app/i18n';
 
-const InputContainer = styled.div`
-  padding: 10px;
-  width: 25%;
+const Container = styled.div`
+  padding: 2%;
+`;
+
+const EyesInputContainer = styled.div`
+  width: 20%;
+  display: flex;
+  align-items: center;
+  background-color: #18436b;
+  border-radius: 3px;
+  height: fit-content;
+  padding: 15px 10px;
+  margin: 10px;
+`;
+
+const BodyInputContainer = styled.div`
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #18436b;
+  border-radius: 3px;
+  height: fit-content;
+  padding: 15px 10px;
+  margin: 10px;
 `;
 
 const ExercisesContainer = styled.div`
@@ -29,6 +50,31 @@ const ExercisesContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+`;
+
+const CheckboxBody = styled(Checkbox)`
+  margin: 0;
+  margin-right: 5px;
+  /* margin-bottom: 2px; */
+`;
+
+const CheckboxEyes = styled(Checkbox)`
+  margin: 0;
+  margin-right: 10px;
+  margin-top: -5px;
+`;
+
+const H5 = styled.h5`
+  margin: 0%;
+`;
+
+const BodyInputLabel = styled.span`
+  font-size: 0.85rem;
+  line-height: 1.5;
+`;
+
+const BodyImg = styled.img`
+  margin-left: 5px;
 `;
 
 export const SettingsPage = () => {
@@ -106,57 +152,59 @@ export const SettingsPage = () => {
   };
 
   return (
-    <div>
+    <Container>
       <h2>{i18n.t('settings.title')}</h2>
       <button type="button" onClick={() => history.push(routes.PANEL)}>
         Panel
       </button>
-      <h5>
+      <h4>
         {`${i18n.t('settings.eyesInterval')} ${i18n.t('settings.eyesIntervalUnit')}`}
-      </h5>
+      </h4>
       <Input
         type="text"
         value={eyesInterval}
         onChange={(event) => updateEyesInterval(event)}
       />
-      <h5>{i18n.t('settings.eyesExercisesList')}</h5>
+      <h4>{i18n.t('settings.eyesExercisesList')}</h4>
       <ExercisesContainer>
         {Object.values(eyesExercises).map((eyesExercise) => (
-          <InputContainer key={eyesExercise.id}>
-            <Checkbox
+          <EyesInputContainer key={eyesExercise.id}>
+            <CheckboxEyes
               type="checkbox"
               checked={eyesExercisesList.includes(eyesExercise.id)}
               onChange={() => updateSelectedEyesExercise(eyesExercise.id)}
             />
-            <h5>{eyesExercise.name}</h5>
-          </InputContainer>
+            <H5>{eyesExercise.name}</H5>
+          </EyesInputContainer>
         ))}
       </ExercisesContainer>
-      <h5>
+
+      <Divider width="100%" />
+
+      <h4>
         {`${i18n.t('settings.bodyInterval')} ${i18n.t('settings.bodyIntervalUnit')}`}
-      </h5>
+      </h4>
       <Input
         type="text"
         value={bodyInterval}
         onChange={(event) => updateBodyInterval(event)}
       />
-      <h5>{i18n.t('settings.bodyExercisesList')}</h5>
+      <h4>{i18n.t('settings.bodyExercisesList')}</h4>
       <ExercisesContainer>
         {Object.values(exercises).map((exercise) => (
-          <InputContainer key={exercise.id}>
-            <label>
-              {exercise.title}
-              <Checkbox
+          <BodyInputContainer key={exercise.id}>
+            <div>
+              <CheckboxBody
                 type="checkbox"
                 checked={exercisesList.includes(exercise.id)}
                 onChange={() => updateSelectedExercise(exercise.id)}
               />
-            </label>
-            <img src={exercise.image} alt="exercise1" width="85" height="110" />
-            <br />
-          </InputContainer>
+              <BodyInputLabel>{exercise.title}</BodyInputLabel>
+            </div>
+            <BodyImg src={exercise.image} alt="exercise1" width="85" height="110" />
+          </BodyInputContainer>
         ))}
       </ExercisesContainer>
-    </div>
+    </Container>
   );
 };

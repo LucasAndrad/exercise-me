@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 
 const EyesInputContainer = styled.div`
-  width: 20%;
+  width: calc(25% - 40px);
   display: flex;
   align-items: center;
   background-color: #18436b;
@@ -32,10 +32,13 @@ const EyesInputContainer = styled.div`
   height: fit-content;
   padding: 15px 10px;
   margin: 10px;
+  @media only screen and (max-width: 1020px) {
+    width: calc(30% - 30px);
+  }
 `;
 
 const BodyInputContainer = styled.div`
-  width: 20%;
+  width: calc(25% - 40px);
   display: flex;
   justify-content: space-between;
   background-color: #18436b;
@@ -43,6 +46,10 @@ const BodyInputContainer = styled.div`
   height: fit-content;
   padding: 15px 10px;
   margin: 10px;
+
+  @media only screen and (max-width: 1020px) {
+    width: calc(30% - 30px);
+  }
 `;
 
 const ExercisesContainer = styled.div`
@@ -55,7 +62,6 @@ const ExercisesContainer = styled.div`
 const CheckboxBody = styled(Checkbox)`
   margin: 0;
   margin-right: 5px;
-  /* margin-bottom: 2px; */
 `;
 
 const CheckboxEyes = styled(Checkbox)`

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import {
   getSelectedEyesExercises,
   setLastEyesExercise,
 } from 'app/modules/settings/actions';
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
 import { EyesAnimation } from 'app/components/EyesAnimation';
+import i18n from 'app/i18n';
 
 const { remote } = require('electron');
 
@@ -15,6 +17,17 @@ type EyeExercise = {
   hasAnimation: boolean;
   animationName?: string;
 };
+
+const Container = styled.div`
+  padding: 2%;
+`;
+
+const Timer = styled.h1`
+  font-family: MontserratLight;
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 100;
+`;
 
 // 1 second
 const TIMER_INTERVAL = 1000;
@@ -48,38 +61,39 @@ export const EyesExercisePage = () => {
     setCurrentExerciseIndex(currentExerciseIndex + 1);
   };
 
-  useEffect(() => {
-    let timerInterval: NodeJS.Timer;
-    let temporaryTimer = timer;
+  // useEffect(() => {
+  //   let timerInterval: NodeJS.Timer;
+  //   let temporaryTimer = timer;
 
-    if (timer > 0) {
-      // time interval for each round
-      timerInterval = setInterval(() => {
-        temporaryTimer -= 1;
-        setTimer(temporaryTimer);
-        if (temporaryTimer < 1) {
-          clearCurrentInterval(timerInterval);
-        }
-      }, TIMER_INTERVAL);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentExercise]);
+  //   if (timer > 0) {
+  //     // time interval for each round
+  //     timerInterval = setInterval(() => {
+  //       temporaryTimer -= 1;
+  //       setTimer(temporaryTimer);
+  //       if (temporaryTimer < 1) {
+  //         clearCurrentInterval(timerInterval);
+  //       }
+  //     }, TIMER_INTERVAL);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [currentExercise]);
 
   return (
-    <div>
-      <h2>Eyes Exercise!</h2>
+    <Container>
+      <h2>{i18n.t('eyesExercise.title')}</h2>
 
       {currentExercise ? (
         <div>
-          <h4>{currentExercise.name}</h4>
+          <h3>{currentExercise.name}</h3>
           <p>{currentExercise.description}</p>
-          {timer}
 
           {currentExercise.hasAnimation && currentExercise.animationName ? (
             <EyesAnimation animationName={currentExercise.animationName} />
           ) : null}
+
+          <Timer>{timer}</Timer>
         </div>
       ) : null}
-    </div>
+    </Container>
   );
 };

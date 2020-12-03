@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { EyesAnimationsNames } from 'app/modules/exercises/constants';
+import { colors } from 'app/constants';
 
 const UpDown = keyframes`
   0%, 100% {
@@ -30,9 +31,11 @@ const ClockWise = keyframes`
 `;
 
 const Container = styled.div`
-  width: 220px;
-  height: 200px;
+  width: 100%;
+  height: fit-content;
   display: flex;
+  justify-content: center;
+  margin: 10% 0;
 `;
 type EyeBorderProps = {
   mr?: string;
@@ -40,7 +43,7 @@ type EyeBorderProps = {
 
 const EyeBorder = styled.div<EyeBorderProps>`
   height: 60px;
-  border: 2px solid #000000;
+  border: 2px solid ${colors.white};
   width: 60px;
   border-radius: 50%;
   justify-content: center;
@@ -58,9 +61,9 @@ type EyeProps = {
 const Eye = styled.div<EyeProps>`
   height: 10px;
   width: 10px;
-  background: black;
+  background: ${colors.white};
   border-radius: 50%;
-  border: 1px solid #000000;
+  border: 1px solid ${colors.white};
   animation: ${(props) => props.animationName || UpDown}
     ${(props) => props.animationTime || '2s'} linear infinite;
 `;

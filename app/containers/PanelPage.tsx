@@ -12,9 +12,19 @@ import {
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
-import { clockIcon, settingsIcon, bodyIcon, eyeIcon } from 'app/assets/images';
+import {
+  clockIcon,
+  settingsIcon,
+  bodyIcon,
+  eyeIcon,
+  bodyIconPng,
+} from 'app/assets/images';
 import { Button, Divider, IconClick } from 'app/components';
 import i18n from 'app/i18n';
+import { notification } from 'app/utils';
+
+// 20 seconds before the exercise
+const NOTIFICATION_TIME = 20000;
 
 const { remote } = require('electron');
 
@@ -146,27 +156,45 @@ export const PanelPage = () => {
 
   useEffect(() => {
     let interval: number;
+    let bodyNotificationInterval: number;
     if (nextBodyExercise > 0) {
       interval = setInterval(() => {
         handleOpenWindow(routes.EXERCISE);
       }, getBodyExerciseInterval());
+
+      bodyNotificationInterval = setTimeout(() => {
+        notification({
+          title: i18n.t('panel.notifications.body.title'),
+          body: i18n.t('panel.notifications.body.description'),
+        });
+      }, nextBodyExercise - NOTIFICATION_TIME);
     }
 
     return () => {
-      clearTimeout(interval);
+      clearInterval(interval);
+      clearTimeout(bodyNotificationInterval);
     };
   }, [nextBodyExercise]);
 
   useEffect(() => {
     let interval: number;
+    let eyesNotificationInterval: number;
     if (nextEyesExercise > 0) {
       interval = setInterval(() => {
         handleOpenWindow(routes.EYES_EXERCISE);
       }, getEyesExerciseInterval());
+
+      eyesNotificationInterval = setTimeout(() => {
+        notification({
+          title: i18n.t('panel.notifications.eyes.title'),
+          body: i18n.t('panel.notifications.eyes.description'),
+        });
+      }, nextEyesExercise - NOTIFICATION_TIME);
     }
 
     return () => {
-      clearTimeout(interval);
+      clearInterval(interval);
+      clearTimeout(eyesNotificationInterval);
     };
   }, [nextEyesExercise]);
 

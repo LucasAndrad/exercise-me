@@ -32,8 +32,11 @@ const Timer = styled.h1`
 `;
 
 const SkipButton = styled(Button)`
-  font-size: 1rem;
+  font-size: 0.85rem;
   padding: 10px 30px;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 2px;
 `;
 
 // 1 second

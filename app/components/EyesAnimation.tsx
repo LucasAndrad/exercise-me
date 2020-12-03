@@ -69,7 +69,7 @@ const Eye = styled.div<EyeProps>`
 `;
 
 const Square = styled.div`
-  width: 90%;
+  width: 85%;
   height: 60%;
   animation: ${ClockWise} 5s linear infinite;
 `;

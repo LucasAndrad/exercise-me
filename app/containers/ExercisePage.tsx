@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { getSelectedExercises, setLastBodyExercise } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
 import { secondsToMiliseconds } from 'app/modules/exercises/utils';
+import { EyesAnimation, Button, Divider } from 'app/components';
+import i18n from 'app/i18n';
 
 const { remote } = require('electron');
 
@@ -21,6 +24,48 @@ type Exercise = {
   title: string;
   description: string;
 };
+
+const Container = styled.div`
+  padding: 2%;
+`;
+
+const SkipButton = styled(Button)`
+  font-size: 1rem;
+  padding: 10px 30px;
+`;
+
+const ExerciseContainer = styled.div`
+  display: flex;
+`;
+
+const TitleImg = styled.div``;
+
+const Info = styled.div`
+  margin-left: 2%;
+`;
+
+const Description = styled.p`
+  margin-top: 0;
+  line-height: 1.5;
+`;
+
+const Timer = styled.span`
+  font-family: MontserratLight;
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 100;
+`;
+
+const Slash = styled.span`
+  font-size: 5rem;
+  font-family: MontserratLight;
+  font-weight: 100;
+`;
+
+const TimerRound = styled.div`
+  text-align: center;
+  margin-top: 10%;
+`;
 
 export const ExercisePage = () => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -82,40 +127,49 @@ export const ExercisePage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   let timerInterval: NodeJS.Timer;
-  //   let temporaryTimer = timer;
+  useEffect(() => {
+    let timerInterval: NodeJS.Timer;
+    let temporaryTimer = timer;
 
-  //   if (round > 0 && timer > 0) {
-  //     // time interval for each round
-  //     timerInterval = setInterval(() => {
-  //       temporaryTimer -= 1;
-  //       setTimer(temporaryTimer);
-  //       if (temporaryTimer < 1) {
-  //         clearCurrentRoundInterval(timerInterval);
-  //       }
-  //     }, TIMER_INTERVAL);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [round]);
+    if (round > 0 && timer > 0) {
+      // time interval for each round
+      timerInterval = setInterval(() => {
+        temporaryTimer -= 1;
+        setTimer(temporaryTimer);
+        if (temporaryTimer < 1) {
+          clearCurrentRoundInterval(timerInterval);
+        }
+      }, TIMER_INTERVAL);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [round]);
 
   return (
-    <div>
-      <h1>Exercise Started</h1>
-      <button type="button" onClick={handleOnClose}>
-        Skip all exercises
-      </button>
+    <Container>
+      <h2>{i18n.t('bodyExercise.title')}</h2>
+      <SkipButton type="button" onClick={handleOnClose}>
+        {i18n.t('bodyExercise.button')}
+      </SkipButton>
+
+      <Divider width="100%" margin="2% auto" />
 
       {currentExercise ? (
-        <div>
-          <h5>{currentExercise.title}</h5>
-          <img src={currentExercise.image} alt="exercise1" />
-          <p>{timer}</p>
-          <p>{round}</p>
-          <p>{currentExercise.description}</p>
-          <span>{currentExercise.duration}</span>
-        </div>
+        <>
+          <h3>{currentExercise.title}</h3>
+          <ExerciseContainer>
+            <TitleImg>
+              <img src={currentExercise.image} alt="exercise1" />
+            </TitleImg>
+            <Info>
+              <Description>{currentExercise.description}</Description>
+              <TimerRound>
+                <p>{`Repetição: ${round} / ${currentExercise.rounds}`}</p>
+                <Timer>{timer}</Timer>
+              </TimerRound>
+            </Info>
+          </ExerciseContainer>
+        </>
       ) : null}
-    </div>
+    </Container>
   );
 };

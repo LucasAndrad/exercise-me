@@ -5,7 +5,7 @@ import {
   setLastEyesExercise,
 } from 'app/modules/settings/actions';
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
-import { EyesAnimation } from 'app/components/EyesAnimation';
+import { EyesAnimation, Button, Divider } from 'app/components';
 import i18n from 'app/i18n';
 
 const { remote } = require('electron');
@@ -27,6 +27,11 @@ const Timer = styled.h1`
   text-align: center;
   font-size: 7rem;
   font-weight: 100;
+`;
+
+const SkipButton = styled(Button)`
+  font-size: 1rem;
+  padding: 10px 30px;
 `;
 
 // 1 second
@@ -61,26 +66,32 @@ export const EyesExercisePage = () => {
     setCurrentExerciseIndex(currentExerciseIndex + 1);
   };
 
-  // useEffect(() => {
-  //   let timerInterval: NodeJS.Timer;
-  //   let temporaryTimer = timer;
+  useEffect(() => {
+    let timerInterval: NodeJS.Timer;
+    let temporaryTimer = timer;
 
-  //   if (timer > 0) {
-  //     // time interval for each round
-  //     timerInterval = setInterval(() => {
-  //       temporaryTimer -= 1;
-  //       setTimer(temporaryTimer);
-  //       if (temporaryTimer < 1) {
-  //         clearCurrentInterval(timerInterval);
-  //       }
-  //     }, TIMER_INTERVAL);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [currentExercise]);
+    if (timer > 0) {
+      // time interval for each round
+      timerInterval = setInterval(() => {
+        temporaryTimer -= 1;
+        setTimer(temporaryTimer);
+        if (temporaryTimer < 1) {
+          clearCurrentInterval(timerInterval);
+        }
+      }, TIMER_INTERVAL);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentExercise]);
 
   return (
     <Container>
       <h2>{i18n.t('eyesExercise.title')}</h2>
+
+      <SkipButton type="button" onClick={handleOnClose}>
+        {i18n.t('eyesExercise.button')}
+      </SkipButton>
+
+      <Divider width="100%" />
 
       {currentExercise ? (
         <div>

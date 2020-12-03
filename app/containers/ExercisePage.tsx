@@ -82,22 +82,22 @@ export const ExercisePage = () => {
     }
   };
 
-  useEffect(() => {
-    let timerInterval: NodeJS.Timer;
-    let temporaryTimer = timer;
+  // useEffect(() => {
+  //   let timerInterval: NodeJS.Timer;
+  //   let temporaryTimer = timer;
 
-    if (round > 0 && timer > 0) {
-      // time interval for each round
-      timerInterval = setInterval(() => {
-        temporaryTimer -= 1;
-        setTimer(temporaryTimer);
-        if (temporaryTimer < 1) {
-          clearCurrentRoundInterval(timerInterval);
-        }
-      }, TIMER_INTERVAL);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [round]);
+  //   if (round > 0 && timer > 0) {
+  //     // time interval for each round
+  //     timerInterval = setInterval(() => {
+  //       temporaryTimer -= 1;
+  //       setTimer(temporaryTimer);
+  //       if (temporaryTimer < 1) {
+  //         clearCurrentRoundInterval(timerInterval);
+  //       }
+  //     }, TIMER_INTERVAL);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [round]);
 
   return (
     <div>

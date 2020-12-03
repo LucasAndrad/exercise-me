@@ -35,7 +35,7 @@ const Container = styled.div`
   height: fit-content;
   display: flex;
   justify-content: center;
-  margin: 10% 0;
+  margin: 5% 0;
 `;
 type EyeBorderProps = {
   mr?: string;

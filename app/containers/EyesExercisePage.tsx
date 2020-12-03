@@ -27,6 +27,8 @@ const Timer = styled.h1`
   text-align: center;
   font-size: 7rem;
   font-weight: 100;
+  margin-top: 0;
+  margin-bottom: 0;
 `;
 
 const SkipButton = styled(Button)`

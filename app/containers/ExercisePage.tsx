@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getSelectedExercises, setLastBodyExercise } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
-import { secondsToMiliseconds } from 'app/modules/exercises/utils';
-import { EyesAnimation, Button, Divider } from 'app/components';
+import { Button, Divider, XIcon, TitleXContainer } from 'app/components';
 import i18n from 'app/i18n';
+import { xIcon } from 'app/assets/images';
 
 const { remote } = require('electron');
 
@@ -53,12 +53,6 @@ const Timer = styled.span`
   font-family: MontserratLight;
   text-align: center;
   font-size: 7rem;
-  font-weight: 100;
-`;
-
-const Slash = styled.span`
-  font-size: 5rem;
-  font-family: MontserratLight;
   font-weight: 100;
 `;
 
@@ -146,7 +140,10 @@ export const ExercisePage = () => {
 
   return (
     <Container>
-      <h2>{i18n.t('bodyExercise.title')}</h2>
+      <TitleXContainer>
+        <h2>{i18n.t('bodyExercise.title')}</h2>
+        <XIcon src={xIcon} alt="x-icon" onClick={() => handleOnClose()} />
+      </TitleXContainer>
       <SkipButton type="button" onClick={handleOnClose}>
         {i18n.t('bodyExercise.button')}
       </SkipButton>

@@ -5,8 +5,9 @@ import {
   setLastEyesExercise,
 } from 'app/modules/settings/actions';
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
-import { EyesAnimation, Button, Divider } from 'app/components';
+import { EyesAnimation, Button, Divider, XIcon, TitleXContainer } from 'app/components';
 import i18n from 'app/i18n';
+import { xIcon } from 'app/assets/images';
 
 const { remote } = require('electron');
 
@@ -90,8 +91,10 @@ export const EyesExercisePage = () => {
 
   return (
     <Container>
-      <h2>{i18n.t('eyesExercise.title')}</h2>
-
+      <TitleXContainer>
+        <h2>{i18n.t('eyesExercise.title')}</h2>
+        <XIcon src={xIcon} alt="x-icon" onClick={() => handleOnClose()} />
+      </TitleXContainer>
       <SkipButton type="button" onClick={handleOnClose}>
         {i18n.t('eyesExercise.button')}
       </SkipButton>

@@ -13,6 +13,7 @@ import checkIcon from './check-icon.svg';
 import bodyIcon from './body-icon.svg';
 import eyeIcon from './eye-icon.svg';
 import arrowLeftIcon from './arrow-left-icon.svg';
+import xIcon from './x-icon.svg';
 
 export { exercise1, exercise2, exercise3, exercise4, exercise5, exercise6 };
 
@@ -24,4 +25,5 @@ export {
   bodyIcon,
   eyeIcon,
   bodyIconPng,
+  xIcon,
 };

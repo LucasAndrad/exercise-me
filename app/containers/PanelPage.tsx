@@ -97,7 +97,7 @@ export const PanelPage = () => {
   const openExerciseWindow = (path: string) => {
     const { BrowserWindow } = remote;
     const exerciseWindow = new BrowserWindow({
-      // frame: false,
+      frame: false,
       fullscreen: true,
       webPreferences: {
         nodeIntegration: true,

@@ -73,6 +73,7 @@ export const exercises = {
     duration: 10,
     repeat: false,
     switchSide: true,
+    image: exercisesImages.exercise7,
     title: 'Alongamento lombar e quadríceps',
     description:
       'De pé, apoiado em uma parede, flexionar uma das pernas para trás e segurar o pé com uma das mãos; com a outra mão apoiada na parede para se equilibrar, segurar por 10 segundos. Alternar a perna. Repetições: 10 a 15 vezes para cada perna',
@@ -83,6 +84,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise8,
     title: 'Alongamento da perna com uso de flexibilidade',
     description:
       'Uma das pernas estendida para o lado, com apoio no calcanhar e mãos apoiadas na cintura. Flexionar a perna lateralmente, deslocando o peso do corpo para o lado esquerdo e depois para o direito. Se necessário, apoiar a mão no chão para manter o equilíbrio e estimular o alongamento de panturrilha e coxa. Permanecer na posição por 15 segundos e depois inverter o lado',
@@ -93,6 +95,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise9,
     title: 'Estimulação do pescoço',
     description:
       'Flexão lateral do pescoço, com auxílio da mão sobre a cabeça. Repetições: 10 vezes para cada lado',
@@ -103,6 +106,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise10,
     title: 'Extensão do tronco',
     description:
       'Posição Inicial: em pé, uma perna à frente e outra levemente afastada, braços estendidos para cima na lateral da cabeça. Flexionar a perna que está à frente e estender a que está atrás, mantendo o corpo estendido, alternar as pernas. Manter-se em cada posição por 15 segundos e repetir entre 15 e 20 vezes cada perna',
@@ -113,6 +117,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise11,
     title: 'Flexão do tronco em deslocamento',
     description:
       'Posição Inicial: em pé, uma perna à frente e outra levemente afastada, braços estendidos ao longo do corpo. Caminhar lentamente e a cada passo flexionar o corpo à frente, tocando os pés alternadamente, mantendo sempre os joelhos semiflexionados. Manter em cada posição por 10 segundos, repetir entre 15 e 20 vezes cada perna',
@@ -123,6 +128,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise12,
     title: 'Abdução do ombro',
     description:
       'Posição Inicial: em pé, pernas levemente afastadas, braços na lateral. Elevar os braços simultaneamente, fazendo com os mesmos se encontrem acima da cabeça; segurar nessa posição por 10 segundos, em seguida baixá-los até a altura da cintura. Repetir entre 15 e 20 vezes',
@@ -133,6 +139,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise13,
     title: 'Extensão do punho',
     description:
       'Estender a mão esquerda à frente e segurar com a mão direita, fazendo com que o dedo polegar encoste no antebraço. Segurar por 10 segundos. Fazer o mesmo com a mão direita. Repetir entre 15 e 20 vezes cada mão.',
@@ -143,6 +150,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise14,
     title: 'Rotação lateral do tronco',
     description:
       'Posição inicial: em pé, de costas para uma parede, braços levemente flexionados e à frente do corpo. Girar o corpo para a lateral, tocando a parede com a palma da mão, ora de um lado ora de outro; segurar por 10 segundos cada lado. Repetir entre 10 e 15 vezes cada lado',
@@ -153,6 +161,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise15,
     title: 'Flexão do tronco à frente',
     description:
       'Posição inicial: em pé, pernas afastadas, antero lateral, joelhos semiflexionados, braços estendidos para cima na lateral da cabeça. Flexionar o corpo para frente até tocar o pé direito, segurar por 10 segundos, levantar elevando os braços acima da cabeça e repetir o mesmo movimento tocando o pé esquerdo. Repetir por 10 a 15 vezes cada lado',
@@ -163,6 +172,7 @@ export const exercises = {
     repeat: false,
     switchSide: true,
     rounds: 2,
+    image: exercisesImages.exercise16,
     title: 'Extensão de joelhos e tornozelos',
     description:
       'Posição inicial: em pé, pernas levemente afastadas e joelhos semiflexionados. Com a mão direita, segurar o pé esquerdo, por trás do corpo, segurar por 10 segundos, fazer o mesmo com o pé direito; caso não consiga se equilibrar, apoiar-se em algum objeto ou em uma parede. O exercício pode ser executado em dupla, um apoiando no ombro do outro. Repetir por 10 a 15 vezes',
@@ -173,6 +183,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise17,
     title: 'Alongar coluna espreguiçando',
     description:
       'Posição Inicial: em pé, pernas afastadas lateralmente, joelhos semiflexionados e quadril encaixado. Elevar os braços acima da cabeça, alongar o máximo que conseguir, girar o corpo para esquerda e para a direita, respirar lenta e profundamente a cada alongada e segurar por 10 segundos. Repetir por 10 a 15 vezes',
@@ -183,6 +194,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise18,
     title: 'Alongar músculo peitoral',
     description:
       'Posição inicial: em pé, pernas levemente afastadas, joelhos semiflexionados e quadril encaixado. Posicionar os braços esticados por trás do corpo, elevar e baixar os mesmos, ao elevar segurar por 10 segundos. Repetir por 10 a 15 vezes',
@@ -193,6 +205,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise19,
     title: 'Alongar braços e peitoral',
     description:
       'Posição inicial: sentado em uma cadeira, costas “coladas” ao encosto, pés apoiados no chão e mãos apoiadas nos joelhos. Elevar os braços acima da cabeça, alongando para trás o máximo que conseguir, segurar por 10 segundos e voltar na posição inicial. Repetir por 10 a 15 vezes',
@@ -203,6 +216,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise20,
     title: 'Abdução de ombro',
     description:
       'Posição Inicial: em pé, pernas levemente afastadas, joelhos semiflexionados, quadril encaixado, braços estendidos na lateral do corpo. Elevar os braços simultaneamente para o alto, cruzando-os acima da cabeça, segurar por 10 segundos e voltar à posição inicial. Repetir por 10 a 15 vezes',
@@ -213,6 +227,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise21,
     title: 'Flexão frontal do tronco',
     description:
       'Posição inicial: sentado, costas encostadas no encosto da cadeira, pés totalmente apoiados no solo e braços estendidos ao longo do corpo. Flexionar o tronco à frente, tocando os tornozelos com as mãos, segurar por 10 segundos e voltar à posição inicial. Repetir por 10 a 15 vezes.',
@@ -223,6 +238,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise22,
     title: 'Flexão de tronco',
     description:
       'Posição inicial: Em pé, próximo a uma parede, pés apoiados na parede, braços estendidos ao longo do corpo e pernas levemente afastadas à frente. Flexionar o corpo à frente, com os braços apoiados nos glúteos e segurar por 10 segundos. Repetir por 10 a 15 vezes',
@@ -233,6 +249,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise23,
     title: 'Flexão de braço',
     description:
       'Posição inicial: em pé, pernas levemente afastadas na lateral, joelhos semiflexionados e quadril encaixado. Segurar um cabo de vassoura, atrás da nuca, elevar os braços acima da cabeça, segurar por 10 segundos e voltar. Repetir por 10 a 15 vezes',
@@ -243,6 +260,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise24,
     title: 'Flexão lateral de tronco',
     description:
       'Posição inicial: em pé, pernas levemente afastadas na lateral, joelhos semiflexionados e quadril encaixado. Segurar um cabo de vassoura acima da cabeça, flexionar o corpo lentamente para os lados, segurando por 10 segundos cada lado. Repetir por 10 a 15 vezes',
@@ -253,6 +271,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise25,
     title: 'Extensão de braços',
     description:
       'Posição inicial: em pé, pernas levemente afastadas na lateral, joelhos semiflexionados e quadril encaixado. Segurar um cabo de vassoura acima da cabeça, baixar e elevar os braços estendidos à frente do corpo. Repetir por 10 a 15 vezes',
@@ -263,6 +282,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise26,
     title: 'Extensão de cotovelos',
     description:
       'Posição inicial: em pé, pernas levemente afastadas na lateral, joelhos semiflexionados e quadril encaixado. Segurar uma bola acima da cabeça com as duas mãos, flexionar o cotovelo para trás, sem soltar a bola; segurar por 10 segundos e elevar novamente até a posição inicial. Repetir por 10 a 15 vezes',
@@ -273,6 +293,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise27,
     title: 'Flexão de cotovelos',
     description:
       'Posição inicial: em pé, pernas levemente afastadas na lateral, joelhos semiflexionados e quadril encaixado. Segurar uma bola à frente do corpo com as duas mãos, flexionar o cotovelo para frente até tocar o ombro, sem soltar a bola; segurar por 10 segundos e estender até a posição inicial. Repetir por 10 a 15 vezes',
@@ -283,6 +304,7 @@ export const exercises = {
     repeat: false,
     switchSide: false,
     rounds: 1,
+    image: exercisesImages.exercise28,
     title: 'Flexão do tronco com bola',
     description:
       'Posição inicial: em pé, pernas levemente afastadas na lateral, joelhos semiflexionados e quadril encaixado. Segurar uma bola acima do corpo com as duas mãos, flexionar o tronco à frente, colocar a bola no chão, elevar o corpo, estendendo os braços acima da cabeça; repetir o exercício apanhando e elevando a bola. Repetir por 10 a 15 vezes',

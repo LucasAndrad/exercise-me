@@ -103,7 +103,13 @@ export const PanelPage = () => {
         nodeIntegration: true,
       },
     });
-    exerciseWindow.loadURL(`file://${__dirname}/app.html#${path}`);
+    // File path is different from dev and production,
+    // this flow below get the correct path for both cases
+    const pathFirstEntry = 'app.html#';
+    const pathUrl = window.location.href.split(pathFirstEntry)[0];
+    const finalPath = `${pathUrl}${pathFirstEntry}${path}`;
+
+    exerciseWindow.loadURL(finalPath);
   };
 
   /**
@@ -111,6 +117,7 @@ export const PanelPage = () => {
    * if yes it'll push the next exercise in 30 minutes from now
    */
   const handleOpenWindow = (path: string) => {
+    console.log(__dirname);
     if (eyesExercisesRunning || bodyExercisesRunning) {
       const next = Date.now() + minutesToMiliseconds(30);
       if (path === routes.EXERCISE) setNextBodyExercise(next);

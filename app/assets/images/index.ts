@@ -29,12 +29,17 @@ import exercise28 from './exercise-28.png';
 
 import bodyIconPng from './body-icon.png';
 
-import clockIcon from './clock-icon.svg';
-import settingsIcon from './settings-icon.svg';
-import checkIcon from './check-icon.svg';
-import bodyIcon from './body-icon.svg';
-import eyeIcon from './eye-icon.svg';
+/**
+ * All svg icons from https://iconify.design/icon-sets/
+ * Under the Open Font License
+ */
 import arrowLeftIcon from './arrow-left-icon.svg';
+import bodyIcon from './body-icon.svg';
+import checkIcon from './check-icon.svg';
+import clockIcon from './clock-icon.svg';
+import eyeIcon from './eye-icon.svg';
+import settingsIcon from './settings-icon.svg';
+import slimArrowRigth from './slim-arrow-right.svg';
 import xIcon from './x-icon.svg';
 
 export {
@@ -69,12 +74,13 @@ export {
 };
 
 export {
-  clockIcon,
-  settingsIcon,
-  checkIcon,
   arrowLeftIcon,
   bodyIcon,
-  eyeIcon,
   bodyIconPng,
+  checkIcon,
+  clockIcon,
+  eyeIcon,
+  settingsIcon,
+  slimArrowRigth,
   xIcon,
 };

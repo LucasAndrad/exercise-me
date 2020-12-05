@@ -8,7 +8,7 @@ import {
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
 import { EyesAnimation, Button, Divider, XIcon, TitleXContainer } from 'app/components';
 import i18n from 'app/i18n';
-import { xIcon } from 'app/assets/images';
+import { xIcon, slimArrowRigth } from 'app/assets/images';
 import { indianBell } from 'app/assets/sounds';
 
 const { remote } = require('electron');
@@ -44,11 +44,22 @@ const SkipButton = styled(Button)`
   letter-spacing: 2px;
 `;
 
+const SlimArrow = styled.img`
+  position: absolute;
+  left: calc(98% - 25px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+`;
+
 // 1 second
 const TIMER_INTERVAL = 1000;
 
 export const EyesExercisePage = () => {
-  let soundInterval;
+  let soundInterval: NodeJS.Timer;
+  const timerInterval = useRef(null);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
   const [currentExercise, setCurrentExercise] = useState<EyeExercise | undefined>();
   const [timer, setTimer] = useState(0);
@@ -74,8 +85,8 @@ export const EyesExercisePage = () => {
     setCurrentExercise(nextExercise);
   }, [currentExerciseIndex]);
 
-  const clearCurrentInterval = (timerInterval: NodeJS.Timer) => {
-    clearInterval(timerInterval);
+  const clearCurrentInterval = () => {
+    clearInterval(timerInterval.current);
     if (audioRef) audioRef.current.play();
 
     soundInterval = setTimeout(() => {
@@ -84,21 +95,26 @@ export const EyesExercisePage = () => {
   };
 
   useEffect(() => {
-    let timerInterval: NodeJS.Timer;
+    // let timerInterval: NodeJS.Timer;
     let temporaryTimer = timer;
 
     if (timer > 0) {
       // time interval for each round
-      timerInterval = setInterval(() => {
+      timerInterval.current = setInterval(() => {
         temporaryTimer -= 1;
         setTimer(temporaryTimer);
         if (temporaryTimer < 1) {
-          clearCurrentInterval(timerInterval);
+          clearCurrentInterval();
         }
       }, TIMER_INTERVAL);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentExercise]);
+
+  const nextExercise = () => {
+    clearInterval(timerInterval.current);
+    setCurrentExerciseIndex(currentExerciseIndex + 1);
+  };
 
   return (
     <Container>
@@ -106,6 +122,11 @@ export const EyesExercisePage = () => {
         <source src={indianBell} type="audio/mpeg" />
         <source src={indianBell} type="audio/mp3" />
       </audio>
+      <SlimArrow
+        src={slimArrowRigth}
+        alt="slim-arrow-right-icon"
+        onClick={() => nextExercise()}
+      />
       <TitleXContainer>
         <h2>{i18n.t('eyesExercise.title')}</h2>
         <XIcon src={xIcon} alt="x-icon" onClick={() => handleOnClose()} />

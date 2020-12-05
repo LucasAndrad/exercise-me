@@ -123,6 +123,7 @@ export const EyesExercisePage = () => {
         <source src={indianBell} type="audio/mp3" />
       </audio>
       <SlimArrow
+        data-tip="Próximo exercício"
         src={slimArrowRigth}
         alt="slim-arrow-right-icon"
         onClick={() => nextExercise()}

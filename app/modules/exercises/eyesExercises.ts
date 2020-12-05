@@ -5,8 +5,8 @@ export const eyesExercises = {
     id: 1,
     name: 'Para cima e para baixo',
     description:
-      'De olhos fechados, mova os olhos para cima e para baixo, igual a animação abaixo, sem pressa, durante 20 segundos.',
-    duration: 20,
+      'De olhos fechados, mova os olhos para cima e para baixo, igual a animação abaixo, sem pressa, durante 15 segundos.',
+    duration: 15,
     hasAnimation: true,
     animationName: EyesAnimationsNames.UpDown,
   },
@@ -14,8 +14,8 @@ export const eyesExercises = {
     id: 2,
     name: 'Para direita e para a esquerda',
     description:
-      'De olhos fechados, mova os olhos para direita e para a esquerda, igual a animação abaixo, sem pressa, durante 20 segundos.',
-    duration: 20,
+      'De olhos fechados, mova os olhos para direita e para a esquerda, igual a animação abaixo, sem pressa, durante 15 segundos.',
+    duration: 15,
     hasAnimation: true,
     animationName: EyesAnimationsNames.LeftRight,
   },
@@ -23,8 +23,8 @@ export const eyesExercises = {
     id: 3,
     name: 'Sentido horário',
     description:
-      'De olhos fechados, gire os olhos no sentido horário (ou anti horário se preferir), igual a animação abaixo, sem pressa, durante 20 segundos.',
-    duration: 20,
+      'De olhos fechados, gire os olhos no sentido horário (ou anti horário se preferir), igual a animação abaixo, sem pressa, durante 15 segundos.',
+    duration: 15,
     hasAnimation: true,
     animationName: EyesAnimationsNames.ClockWise,
   },

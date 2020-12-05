@@ -126,8 +126,8 @@ export const exercises = {
     id: 12,
     duration: 10 * 15,
     repeat: false,
-    switchSide: true,
-    rounds: 2,
+    switchSide: false,
+    rounds: 1,
     image: exercisesImages.exercise12,
     title: 'Abdução do ombro',
     description:

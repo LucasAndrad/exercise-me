@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption */
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import {
   getSelectedEyesExercises,
@@ -8,8 +9,11 @@ import { eyesExercises } from 'app/modules/exercises/eyesExercises';
 import { EyesAnimation, Button, Divider, XIcon, TitleXContainer } from 'app/components';
 import i18n from 'app/i18n';
 import { xIcon } from 'app/assets/images';
+import { indianBell } from 'app/assets/sounds';
 
 const { remote } = require('electron');
+
+const EXERCISE_DISPLAY_INTERVAL = 3500;
 
 type EyeExercise = {
   name: string;
@@ -44,9 +48,11 @@ const SkipButton = styled(Button)`
 const TIMER_INTERVAL = 1000;
 
 export const EyesExercisePage = () => {
+  let soundInterval;
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
   const [currentExercise, setCurrentExercise] = useState<EyeExercise | undefined>();
   const [timer, setTimer] = useState(0);
+  const audioRef = useRef(null);
 
   const handleOnClose = () => {
     setLastEyesExercise();
@@ -58,6 +64,7 @@ export const EyesExercisePage = () => {
     const selectedEyesExercises = getSelectedEyesExercises();
     if (currentExerciseIndex >= selectedEyesExercises.length) {
       setLastEyesExercise();
+      clearInterval(soundInterval);
       handleOnClose();
       return;
     }
@@ -69,7 +76,11 @@ export const EyesExercisePage = () => {
 
   const clearCurrentInterval = (timerInterval: NodeJS.Timer) => {
     clearInterval(timerInterval);
-    setCurrentExerciseIndex(currentExerciseIndex + 1);
+    if (audioRef) audioRef.current.play();
+
+    soundInterval = setTimeout(() => {
+      setCurrentExerciseIndex(currentExerciseIndex + 1);
+    }, EXERCISE_DISPLAY_INTERVAL);
   };
 
   useEffect(() => {
@@ -91,6 +102,10 @@ export const EyesExercisePage = () => {
 
   return (
     <Container>
+      <audio ref={audioRef}>
+        <source src={indianBell} type="audio/mpeg" />
+        <source src={indianBell} type="audio/mp3" />
+      </audio>
       <TitleXContainer>
         <h2>{i18n.t('eyesExercise.title')}</h2>
         <XIcon src={xIcon} alt="x-icon" onClick={() => handleOnClose()} />

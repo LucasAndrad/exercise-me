@@ -192,6 +192,11 @@ export default merge(baseConfig, {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
         use: 'url-loader',
       },
+      // MP3 sounds
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+      },
     ],
   },
   resolve: {

@@ -4,4 +4,5 @@ export const colors = {
   buttonHoverBlue: '#6b66ff',
   white: '#ffffff',
   lightGray: '#dcdcdc',
+  eyesInside: '#416e98',
 };

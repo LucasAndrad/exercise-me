@@ -43,8 +43,8 @@ type EyeBorderProps = {
 
 const EyeBorder = styled.div<EyeBorderProps>`
   height: 60px;
-  border: 2px solid ${colors.white};
   width: 60px;
+  border: 3px solid ${colors.white};
   border-radius: 50%;
   justify-content: center;
   padding: 5px;
@@ -59,13 +59,20 @@ type EyeProps = {
 };
 
 const Eye = styled.div<EyeProps>`
-  height: 10px;
-  width: 10px;
+  height: 15px;
+  width: 15px;
   background: ${colors.white};
   border-radius: 50%;
   border: 1px solid ${colors.white};
   animation: ${(props) => props.animationName || UpDown}
     ${(props) => props.animationTime || '2s'} linear infinite;
+`;
+
+const EyeInside = styled.div`
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: ${colors.eyesInside};
 `;
 
 const Square = styled.div`
@@ -88,13 +95,17 @@ export const EyesAnimation = ({ animationName }: Props) => {
       <Container>
         <EyeBorder mr="20px">
           <Square>
-            <Eye animationName="none" animationTime="0s" />
+            <Eye animationName="none" animationTime="0s">
+              <EyeInside />
+            </Eye>
           </Square>
         </EyeBorder>
 
         <EyeBorder>
           <Square>
-            <Eye animationName="none" animationTime="0s" />
+            <Eye animationName="none" animationTime="0s">
+              <EyeInside />
+            </Eye>
           </Square>
         </EyeBorder>
       </Container>
@@ -108,14 +119,18 @@ export const EyesAnimation = ({ animationName }: Props) => {
         <Eye
           animationName={AnimationKeyframe[animationName]}
           animationTime={animationTime}
-        />
+        >
+          <EyeInside />
+        </Eye>
       </EyeBorder>
 
       <EyeBorder>
         <Eye
           animationName={AnimationKeyframe[animationName]}
           animationTime={animationTime}
-        />
+        >
+          <EyeInside />
+        </Eye>
       </EyeBorder>
     </Container>
   );

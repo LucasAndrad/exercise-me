@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from 'app/constants';
+import i18n from 'app/i18n';
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 16px);
+  height: 60%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+`;
+
+const PointersContainer = styled.div`
+  width: 100%;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,25 +45,34 @@ export const SwitchExercisesAnimation = () => {
 
   useEffect(() => {
     setBackground(colors.white);
+
+    return () => {
+      setBackground('transparent');
+    };
   }, []);
 
   return (
     <Container>
-      <Point ml="0px" background={background} delay="0.5s">
-        5
-      </Point>
-      <Point background={background} delay="1.5s">
-        4
-      </Point>
-      <Point background={background} delay="2.5s">
-        3
-      </Point>
-      <Point background={background} delay="3.5s">
-        2
-      </Point>
-      <Point background={background} delay="4.5s">
-        1
-      </Point>
+      <div style={{ width: '100%' }}>
+        <h3>{i18n.t('switchExerciseAnimation.title')}</h3>
+        <PointersContainer>
+          <Point ml="0px" background={background} delay="0.5s">
+            5
+          </Point>
+          <Point background={background} delay="1.5s">
+            4
+          </Point>
+          <Point background={background} delay="2.5s">
+            3
+          </Point>
+          <Point background={background} delay="3.5s">
+            2
+          </Point>
+          <Point background={background} delay="4.5s">
+            1
+          </Point>
+        </PointersContainer>
+      </div>
     </Container>
   );
 };

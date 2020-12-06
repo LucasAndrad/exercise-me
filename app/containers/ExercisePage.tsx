@@ -3,7 +3,14 @@ import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import { getSelectedExercises, setLastBodyExercise } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
-import { Button, Divider, XIcon, TitleXContainer, SlimArrow } from 'app/components';
+import {
+  Button,
+  Divider,
+  XIcon,
+  TitleXContainer,
+  SlimArrow,
+  SwitchExercisesAnimation,
+} from 'app/components';
 import i18n from 'app/i18n';
 import { xIcon, slimArrowRigth } from 'app/assets/images';
 
@@ -66,11 +73,12 @@ const TimerRound = styled.div`
 
 export const ExercisePage = () => {
   const timerInterval = useRef(null);
+  const animationInterval = useRef(null);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentExercise, setCurrentExercise] = useState<Exercise | undefined>();
-  // const [exercise, setExercise] = useState();
   const [timer, setTimer] = useState(0);
   const [round, setRound] = useState(0);
+  const [animationIsOn, setAnimationIsOn] = useState(false);
   const [totalRounds, setTotalRounds] = useState(2);
   const [currentBodySide, setCurrentBodySide] = useState<boolean | string>(false);
 
@@ -105,10 +113,14 @@ export const ExercisePage = () => {
   useEffect(() => {
     if (!currentExercise) return;
 
-    const firstDuration = exerciseDuration();
-    setTotalRounds(currentExercise.rounds);
-    setTimer(firstDuration);
-    setRound(1);
+    setAnimationIsOn(true);
+    animationInterval.current = setTimeout(() => {
+      const firstDuration = exerciseDuration();
+      setTotalRounds(currentExercise.rounds);
+      setTimer(firstDuration);
+      setAnimationIsOn(false);
+      setRound(1);
+    }, 5000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentExercise]);
 
@@ -144,10 +156,23 @@ export const ExercisePage = () => {
   }, [round]);
 
   const nextExercise = () => {
+    clearInterval(animationInterval.current);
     // set INVALID_ROUND will trigger the useEffect when the round has a valid value again
-    setRound(INVALID_ROUND);
+    setAnimationIsOn(false);
     clearInterval(timerInterval.current);
+    setRound(INVALID_ROUND);
     setCurrentExerciseIndex(currentExerciseIndex + 1);
+  };
+
+  const animationBeforeTimer = () => {
+    if (animationIsOn) return <SwitchExercisesAnimation key={currentExercise?.id} />;
+
+    return (
+      <TimerRound>
+        <p>{`Repetição: ${round} / ${currentExercise?.rounds}`}</p>
+        <Timer>{timer}</Timer>
+      </TimerRound>
+    );
   };
 
   return (
@@ -179,10 +204,7 @@ export const ExercisePage = () => {
             </TitleImg>
             <Info>
               <Description>{currentExercise.description}</Description>
-              <TimerRound>
-                <p>{`Repetição: ${round} / ${currentExercise.rounds}`}</p>
-                <Timer>{timer}</Timer>
-              </TimerRound>
+              {animationBeforeTimer()}
             </Info>
           </ExerciseContainer>
         </>

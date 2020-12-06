@@ -73,6 +73,7 @@ export const exercises = {
     duration: 10,
     repeat: false,
     switchSide: true,
+    rounds: 2,
     image: exercisesImages.exercise7,
     title: 'Alongamento lombar e quadríceps',
     description:

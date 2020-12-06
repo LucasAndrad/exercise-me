@@ -238,6 +238,7 @@ export const PanelPage = () => {
           src={settingsIcon}
           alt="settings-icon"
           onClick={() => history.push(routes.SETTINGS)}
+          data-tip="Configurações"
         />
       </SettingsRow>
       <br />

@@ -6,7 +6,14 @@ import {
   setLastEyesExercise,
 } from 'app/modules/settings/actions';
 import { eyesExercises } from 'app/modules/exercises/eyesExercises';
-import { EyesAnimation, Button, Divider, XIcon, TitleXContainer } from 'app/components';
+import {
+  EyesAnimation,
+  Button,
+  Divider,
+  XIcon,
+  TitleXContainer,
+  SlimArrow,
+} from 'app/components';
 import i18n from 'app/i18n';
 import { xIcon, slimArrowRigth } from 'app/assets/images';
 import { indianBell } from 'app/assets/sounds';
@@ -42,16 +49,6 @@ const SkipButton = styled(Button)`
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 2px;
-`;
-
-const SlimArrow = styled.img`
-  position: absolute;
-  left: calc(98% - 25px);
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
 `;
 
 // 1 second
@@ -128,6 +125,7 @@ export const EyesExercisePage = () => {
         alt="slim-arrow-right-icon"
         onClick={() => nextExercise()}
       />
+
       <TitleXContainer>
         <h2>{i18n.t('eyesExercise.title')}</h2>
         <XIcon src={xIcon} alt="x-icon" onClick={() => handleOnClose()} />

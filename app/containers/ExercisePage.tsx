@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { getSelectedExercises, setLastBodyExercise } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
-import { Button, Divider, XIcon, TitleXContainer } from 'app/components';
+import { Button, Divider, XIcon, TitleXContainer, SlimArrow } from 'app/components';
 import i18n from 'app/i18n';
-import { xIcon } from 'app/assets/images';
+import { xIcon, slimArrowRigth } from 'app/assets/images';
 
 const { remote } = require('electron');
 
@@ -13,6 +13,8 @@ const EXERCISE_REPEAT_TIME = 1;
 
 // 1 second
 const TIMER_INTERVAL = 1000;
+
+const INVALID_ROUND = 100;
 
 type Exercise = {
   id: number;
@@ -62,6 +64,7 @@ const TimerRound = styled.div`
 `;
 
 export const ExercisePage = () => {
+  const timerInterval = useRef(null);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentExercise, setCurrentExercise] = useState<Exercise | undefined>();
   // const [exercise, setExercise] = useState();
@@ -108,8 +111,8 @@ export const ExercisePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentExercise]);
 
-  const clearCurrentRoundInterval = (timerInterval: NodeJS.Timer) => {
-    clearInterval(timerInterval);
+  const clearCurrentRoundInterval = () => {
+    clearInterval(timerInterval.current);
     // start next round
     if (round < totalRounds) {
       setTimer(exerciseDuration());
@@ -122,24 +125,39 @@ export const ExercisePage = () => {
   };
 
   useEffect(() => {
-    let timerInterval: NodeJS.Timer;
+    if (round === INVALID_ROUND) return;
+
     let temporaryTimer = timer;
 
     if (round > 0 && timer > 0) {
       // time interval for each round
-      timerInterval = setInterval(() => {
+      timerInterval.current = setInterval(() => {
         temporaryTimer -= 1;
         setTimer(temporaryTimer);
         if (temporaryTimer < 1) {
-          clearCurrentRoundInterval(timerInterval);
+          clearCurrentRoundInterval();
         }
       }, TIMER_INTERVAL);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round]);
 
+  const nextExercise = () => {
+    // set INVALID_ROUND will trigger the useEffect when the round has a valid value again
+    setRound(INVALID_ROUND);
+    clearInterval(timerInterval.current);
+    setCurrentExerciseIndex(currentExerciseIndex + 1);
+  };
+
   return (
     <Container>
+      <SlimArrow
+        data-tip="Próximo exercício"
+        src={slimArrowRigth}
+        alt="slim-arrow-right-icon"
+        onClick={() => nextExercise()}
+      />
+
       <TitleXContainer>
         <h2>{i18n.t('bodyExercise.title')}</h2>
         <XIcon src={xIcon} alt="x-icon" onClick={() => handleOnClose()} />

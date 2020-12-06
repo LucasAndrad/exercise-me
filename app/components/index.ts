@@ -7,3 +7,4 @@ export { EyesAnimation } from './EyesAnimation';
 export { TitleXContainer } from './TitleXContainer';
 export { XIcon } from './XIcon';
 export { SlimArrow } from './SlimArrow';
+export { SwitchExercisesAnimation } from './SwitchExercisesAnimation';

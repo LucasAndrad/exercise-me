@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 import {
   getSelectedEyesExercises,
   setLastEyesExercise,
@@ -119,6 +120,7 @@ export const EyesExercisePage = () => {
         <source src={indianBell} type="audio/mpeg" />
         <source src={indianBell} type="audio/mp3" />
       </audio>
+      <ReactTooltip />
       <SlimArrow
         data-tip="Próximo exercício"
         src={slimArrowRigth}

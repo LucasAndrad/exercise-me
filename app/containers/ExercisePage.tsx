@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 import { getSelectedExercises, setLastBodyExercise } from 'app/modules/settings/actions';
 import { exercises } from 'app/modules/exercises/data';
 import { Button, Divider, XIcon, TitleXContainer, SlimArrow } from 'app/components';
@@ -151,6 +152,7 @@ export const ExercisePage = () => {
 
   return (
     <Container>
+      <ReactTooltip />
       <SlimArrow
         data-tip="Próximo exercício"
         src={slimArrowRigth}

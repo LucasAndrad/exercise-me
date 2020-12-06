@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 import {
   getSettings,
   getLastBodyExercise,
@@ -231,6 +232,7 @@ export const PanelPage = () => {
 
   return (
     <Container>
+      <ReactTooltip />
       <SettingsRow>
         <IconClick
           width="25"

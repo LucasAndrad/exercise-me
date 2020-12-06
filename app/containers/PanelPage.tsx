@@ -13,13 +13,7 @@ import {
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
-import {
-  clockIcon,
-  settingsIcon,
-  bodyIcon,
-  eyeIcon,
-  bodyIconPng,
-} from 'app/assets/images';
+import { clockIcon, settingsIcon, bodyIcon, eyeIcon } from 'app/assets/images';
 import { Button, Divider, IconClick } from 'app/components';
 import i18n from 'app/i18n';
 import { notification } from 'app/utils';
@@ -280,9 +274,6 @@ export const PanelPage = () => {
           </ButtonRow>
         </div>
       </Times>
-      {/* <button type="button" onClick={() => history.push(routes.HOME)}>
-        Home Page
-      </button> */}
     </Container>
   );
 };

@@ -5,7 +5,7 @@ export const minutesToMiliseconds = (minutes: number) => minutes * 60000;
 export const milesecondsToMinutes = (mileseconds: number) => mileseconds / 60000;
 
 export const formatDateTime = (date: Date) => {
-  const dateTimeFormated = format(date, 'hh:mm a - dd/MM');
+  const dateTimeFormated = format(date, 'HH:mm');
   return dateTimeFormated;
 };
 

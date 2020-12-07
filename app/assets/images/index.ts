@@ -38,8 +38,10 @@ import bodyIcon from './body-icon.svg';
 import checkIcon from './check-icon.svg';
 import clockIcon from './clock-icon.svg';
 import eyeIcon from './eye-icon.svg';
+import logo from './logo.png';
 import settingsIcon from './settings-icon.svg';
 import slimArrowRigth from './slim-arrow-right.svg';
+import questionIcon from './question-icon.svg';
 import xIcon from './x-icon.svg';
 
 export {
@@ -80,7 +82,9 @@ export {
   checkIcon,
   clockIcon,
   eyeIcon,
+  logo,
   settingsIcon,
   slimArrowRigth,
+  questionIcon,
   xIcon,
 };

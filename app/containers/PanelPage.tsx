@@ -13,7 +13,13 @@ import {
 import { storageKeys } from 'app/modules/settings/constants';
 import { routes } from 'app/constants/routes';
 import { localDateTime, minutesToMiliseconds } from 'app/modules/settings/utils';
-import { clockIcon, settingsIcon, bodyIcon, eyeIcon } from 'app/assets/images';
+import {
+  clockIcon,
+  settingsIcon,
+  bodyIcon,
+  eyeIcon,
+  questionIcon,
+} from 'app/assets/images';
 import { Button, Divider, IconClick } from 'app/components';
 import i18n from 'app/i18n';
 import { notification } from 'app/utils';
@@ -234,6 +240,15 @@ export const PanelPage = () => {
           alt="settings-icon"
           onClick={() => history.push(routes.SETTINGS)}
           data-tip="Configurações"
+        />
+        <IconClick
+          style={{ marginLeft: '20px' }}
+          width="25"
+          height="25"
+          src={questionIcon}
+          alt="question-icon"
+          onClick={() => history.push(routes.SETTINGS)}
+          data-tip="Sobre o aplicatico"
         />
       </SettingsRow>
       <br />

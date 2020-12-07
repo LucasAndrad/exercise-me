@@ -8,3 +8,5 @@ export { TitleXContainer } from './TitleXContainer';
 export { XIcon } from './XIcon';
 export { SlimArrow } from './SlimArrow';
 export { SwitchExercisesAnimation } from './SwitchExercisesAnimation';
+export { Paragraph } from './Paragraph';
+export { H2 } from './H2';

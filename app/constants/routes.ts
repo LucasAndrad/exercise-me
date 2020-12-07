@@ -1,9 +1,9 @@
 export const routes = {
-  HOME: '/',
-  COUNTER: '/counter',
+  ABOUT: '/about',
+  BURNOUT: '/burnout',
   EXERCISE: '/exercise',
-  START_DAY: '/',
+  EYES_EXERCISE: '/eyes-exercise',
   PANEL: '/panel',
   SETTINGS: '/settings',
-  EYES_EXERCISE: '/eyes-exercise',
+  START_DAY: '/',
 };

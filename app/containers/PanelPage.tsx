@@ -19,8 +19,9 @@ import {
   bodyIcon,
   eyeIcon,
   questionIcon,
+  hospitalIcon,
 } from 'app/assets/images';
-import { Button, Divider, IconClick } from 'app/components';
+import { Button, Divider, IconClick, H2 as CustomH2 } from 'app/components';
 import i18n from 'app/i18n';
 import { notification } from 'app/utils';
 
@@ -52,7 +53,7 @@ const TimeContainer = styled.div`
   justify-content: center;
 `;
 
-const H2 = styled.h2`
+const H2 = styled(CustomH2)`
   font-size: 2rem;
   font-family: MontserratLight;
   @media only screen and (max-width: 1024px) {
@@ -245,9 +246,18 @@ export const PanelPage = () => {
           style={{ marginLeft: '20px' }}
           width="25"
           height="25"
+          src={hospitalIcon}
+          alt="hospital-icon"
+          onClick={() => history.push(routes.BURNOUT)}
+          data-tip="Leia sobre Burnout"
+        />
+        <IconClick
+          style={{ marginLeft: '20px' }}
+          width="25"
+          height="25"
           src={questionIcon}
           alt="question-icon"
-          onClick={() => history.push(routes.SETTINGS)}
+          onClick={() => history.push(routes.ABOUT)}
           data-tip="Sobre o aplicatico"
         />
       </SettingsRow>

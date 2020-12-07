@@ -38,6 +38,7 @@ import bodyIcon from './body-icon.svg';
 import checkIcon from './check-icon.svg';
 import clockIcon from './clock-icon.svg';
 import eyeIcon from './eye-icon.svg';
+import hospitalIcon from './hospital-icon.svg';
 import logo from './logo.png';
 import settingsIcon from './settings-icon.svg';
 import slimArrowRigth from './slim-arrow-right.svg';
@@ -82,6 +83,7 @@ export {
   checkIcon,
   clockIcon,
   eyeIcon,
+  hospitalIcon,
   logo,
   settingsIcon,
   slimArrowRigth,

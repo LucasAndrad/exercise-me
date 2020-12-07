@@ -1,7 +1,17 @@
-import { StartDayPage } from './StartDayPage';
-import { PanelPage } from './PanelPage';
+import { AboutPage } from './AboutPage';
+import { BurnoutPage } from './BurnoutPage';
 import { ExercisePage } from './ExercisePage';
-import { SettingsPage } from './SettingsPage';
 import { EyesExercisePage } from './EyesExercisePage';
+import { PanelPage } from './PanelPage';
+import { SettingsPage } from './SettingsPage';
+import { StartDayPage } from './StartDayPage';
 
-export { PanelPage, StartDayPage, ExercisePage, SettingsPage, EyesExercisePage };
+export {
+  AboutPage,
+  BurnoutPage,
+  ExercisePage,
+  EyesExercisePage,
+  PanelPage,
+  SettingsPage,
+  StartDayPage,
+};

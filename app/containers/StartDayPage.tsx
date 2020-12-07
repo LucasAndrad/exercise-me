@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { setStartDay } from 'app/modules/settings/actions';
+import { setStartDay, getStartDay } from 'app/modules/settings/actions';
 import { routes } from 'app/constants';
 import { Button } from 'app/components';
 import i18n from 'app/i18n';
@@ -43,6 +43,16 @@ export const StartDayPage = () => {
     setStartDay();
     history.push(routes.PANEL);
   };
+
+  useEffect(() => {
+    const startDay = getStartDay();
+    if (!startDay) return;
+
+    const currentDay = new Date().getDate();
+    const startDayDate = new Date(startDay).getDate();
+
+    if (currentDay === startDayDate) history.push(routes.PANEL);
+  }, []);
 
   return (
     <Container>

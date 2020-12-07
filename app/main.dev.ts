@@ -31,16 +31,14 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
 }
 
-if (
-  process.env.NODE_ENV === 'development' ||
-  process.env.DEBUG_PROD === 'true'
-) {
+if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
   require('electron-debug')();
 }
 
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  // const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  const forceDownload = false;
   const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
 
   return Promise.all(
@@ -49,10 +47,7 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
-  if (
-    process.env.NODE_ENV === 'development' ||
-    process.env.DEBUG_PROD === 'true'
-  ) {
+  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
 
@@ -70,8 +65,7 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     webPreferences:
-      (process.env.NODE_ENV === 'development' ||
-        process.env.E2E_BUILD === 'true') &&
+      (process.env.NODE_ENV === 'development' || process.env.E2E_BUILD === 'true') &&
       process.env.ERB_SECURE !== 'true'
         ? {
             nodeIntegration: true,

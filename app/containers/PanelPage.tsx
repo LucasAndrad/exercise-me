@@ -112,7 +112,6 @@ export const PanelPage = () => {
    * if yes it'll push the next exercise in 30 minutes from now
    */
   const handleOpenWindow = (path: string) => {
-    console.log(__dirname);
     if (eyesExercisesRunning || bodyExercisesRunning) {
       const next = Date.now() + minutesToMiliseconds(30);
       if (path === routes.EXERCISE) setNextBodyExercise(next);

@@ -4,7 +4,6 @@
  * Liceses of sounds: Attribution 3.0 and Sampling Plus 1.0
  */
 
-import bell from './bell-daniel-simion.mp3';
-import indianBell from './indian-bell-soundBible.mp3';
+import indianBell from './indian-bell.mp3';
 
-export { bell, indianBell };
+export { indianBell };

@@ -24,6 +24,7 @@ import {
 import { Button, Divider, IconClick, H2 as CustomH2 } from 'app/components';
 import i18n from 'app/i18n';
 import { notification } from 'app/utils';
+import { colors } from 'app/constants';
 
 // 20 seconds before the exercise
 const NOTIFICATION_TIME = 20000;
@@ -87,6 +88,14 @@ const ButtonNext = styled(Button)`
 const ButtonRow = styled.div`
   width: 100%;
   text-align: center;
+`;
+
+const HiddenButton = styled.button`
+  border: none;
+  color: ${colors.prussianBlue};
+  background: ${colors.prussianBlue};
+  margin: 0;
+  padding: 0;
 `;
 
 export const PanelPage = () => {
@@ -234,6 +243,20 @@ export const PanelPage = () => {
     <Container>
       <ReactTooltip />
       <SettingsRow>
+        <HiddenButton
+          id="btn-eyes-hidden"
+          type="button"
+          onClick={() => history.push(routes.EYES_EXERCISE)}
+        >
+          hidden eyes
+        </HiddenButton>
+        <HiddenButton
+          id="btn-eyes-hidden"
+          type="button"
+          onClick={() => history.push(routes.EXERCISE)}
+        >
+          hidden body
+        </HiddenButton>
         <IconClick
           width="25"
           height="25"

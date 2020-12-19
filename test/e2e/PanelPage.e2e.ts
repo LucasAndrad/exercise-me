@@ -1,5 +1,5 @@
 /* eslint jest/expect-expect: off, jest/no-test-callback: off */
-import { ClientFunction, Selector } from 'testcafe';
+import { Selector } from 'testcafe';
 
 const clickStartDayButton = (t) => t.click(Selector('button').withText(/começar/i));
 

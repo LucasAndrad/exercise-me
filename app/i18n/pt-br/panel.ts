@@ -1,7 +1,7 @@
 export const panel = {
   nextBody: 'Próxima série de alongamentos para o corpo',
   runBody: 'Iniciar alongamentos',
-  nextEye: 'Próxima série de exercicios para os olhos',
+  nextEye: 'Próxima série de exercícios para os olhos',
   runEye: 'Iniciar exercícios dos olhos',
 
   notifications: {

@@ -16,7 +16,7 @@ const assertNoConsoleErrors = async (t) => {
   await t.expect(error).eql([]);
 };
 
-fixture`Home Page`.page('../../app/app.html').afterEach(assertNoConsoleErrors);
+fixture`Start Day Page`.page('../../app/app.html').afterEach(assertNoConsoleErrors);
 
 test('should open window and contain expected page titles and button', async (t) => {
   await t.expect(getPageTitle()).eql('Exercise Me!');
